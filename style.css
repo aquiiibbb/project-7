@@ -7,216 +7,6 @@
   font-style: italic;
 }
 
-/*scrolling des*/
-.sticky-header-main {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background:#9bb771;
-  color: white;
-  z-index: 1000;
-  overflow: hidden;
-}
-
-.header-content-wrapper {
-  display: flex;
-  align-items: center;
-  height: 46px;
-  position: relative;
-}
-
-/* Scrolling Address Container */
-.scrolling-address-container {
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-}
-
-.scrolling-address-text {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.1;
-  animation: scroll-left 30s linear infinite;
-  padding-left: 100%;
-  color: white;
-}
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Header Call Button */
-.header-call-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  background:#202e0a;
-  border-radius: 0 0 0 25px;
-  z-index: 10;
-}
-
-.header-call-link {
-  display: flex;
-  align-items: center;
-  color: white;
-  text-decoration: none;
-  padding: 14px 24px;
-  height: 100%;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-
-.header-call-link:hover {
-  background: rgba(255,255,255,0.1);
-  transform: scale(1.02);
-}
-
-.header-call-icon {
-  font-size: 17px;
-  margin-right: 7px;
-  filter: brightness(0) invert(1);
-}
-
-.header-call-text {
-  white-space: nowrap;
-  font-weight: 700;
-  color: white;
-}
-
-/* Fixed Contact Button - Right Side (Extra) */
-.fixed-contact-btn {
-  position: fixed;
-  top: 60%;
-  right: 0;
-  transform: translateY(-50%);
-  z-index: 1001;
-}
-
-.contact-btn-link {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-  color: white;
-  text-decoration: none;
-  padding: 15px 20px;
-  border-radius: 25px 0 0 25px;
-  box-shadow: -3px 3px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.contact-btn-link:hover {
-  transform: translateX(-5px);
-  box-shadow: -5px 5px 20px rgba(0,0,0,0.3);
-}
-
-.phone-icon-btn {
-  font-size: 18px;
-  margin-right: 8px;
-  animation: pulse 2s infinite;
-  color: white !important;
-  filter: brightness(0) invert(1);
-}
-
-.contact-btn-text {
-  color: white;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-/* Body padding */
-body {
-  padding-top: 50px;
-  margin: 0;
-}
-
-/* Mobile Responsive - FIXED */
-@media (max-width: 768px) {
-  .header-content-wrapper {
-    height: 45px;
-  }
-  
-  .scrolling-address-text {
-    font-size: 12px; /* Smaller font for mobile */
-    animation-duration: 25s;
-  }
-  
-  .header-call-link {
-    padding: 10px 15px; /* Reduced padding */
-    font-size: 11px; /* Smaller font */
-  }
-  
-  .header-call-text {
-    /* REMOVED display: none; - ab number show hoga */
-    font-size: 11px;
-    font-weight: 600;
-  }
-  
-  .header-call-icon {
-    font-size: 16px;
-    margin-right: 5px;
-  }
-  
-  .contact-btn-link {
-    padding: 12px 15px;
-    font-size: 12px;
-  }
-  
-  .contact-btn-text {
-    display: none; /* Side button pe text hide */
-  }
-  
-  .phone-icon-btn {
-    margin-right: 0;
-  }
-  
-  body {
-    padding-top: 45px;
-  }
-}
-
-@media (max-width: 480px) {
-  .scrolling-address-text {
-    font-size: 11px;
-    animation-duration: 20s;
-  }
-  
-  .header-call-link {
-    padding: 8px 12px;
-    font-size: 10px;
-  }
-  
-  .header-call-text {
-    font-size: 10px;
-  }
-  
-  .header-call-icon {
-    font-size: 14px;
-    margin-right: 4px;
-  }
-}
-
-/* Pause scroll on hover */
-.scrolling-address-container:hover .scrolling-address-text {
-  animation-play-state: paused;
-}
 
 /*social icon */
 .social-sidebar {
@@ -307,42 +97,47 @@ body {
 /* Mobile Responsive - SIDE PE RAKHNE KE LIYE */
 @media (max-width: 768px) {
   .social-sidebar {
-    right: 10px; /* Side pe tight rakhne ke liye */
+    right: 10px;
+    /* Side pe tight rakhne ke liye */
     gap: 10px;
     top: 50%;
     transform: translateY(-50%);
-    flex-direction: column; /* Vertical hi rakhenge */
+    flex-direction: column;
+    /* Vertical hi rakhenge */
   }
-  
+
   .social-icon {
     width: 45px;
     height: 45px;
   }
-  
+
   .social-icon svg {
     width: 18px;
     height: 18px;
   }
-  
+
   .icon-label {
-    display: none; /* Mobile pe labels hide */
+    display: none;
+    /* Mobile pe labels hide */
   }
 }
 
 @media (max-width: 480px) {
   .social-sidebar {
-    right: 8px; /* Aur tight */
+    right: 8px;
+    /* Aur tight */
     gap: 8px;
     top: 50%;
     transform: translateY(-50%);
-    flex-direction: column; /* Vertical maintain */
+    flex-direction: column;
+    /* Vertical maintain */
   }
-  
+
   .social-icon {
     width: 35px;
     height: 35px;
   }
-  
+
   .social-icon svg {
     width: 16px;
     height: 16px;
@@ -351,15 +146,16 @@ body {
 
 @media (max-width: 360px) {
   .social-sidebar {
-    right: 5px; /* Bilkul edge pe */
+    right: 5px;
+    /* Bilkul edge pe */
     gap: 6px;
   }
-  
+
   .social-icon {
     width: 35px;
     height: 35px;
   }
-  
+
   .social-icon svg {
     width: 14px;
     height: 14px;
@@ -372,6 +168,7 @@ body {
     opacity: 0;
     transform: translateX(100px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -381,6 +178,7 @@ body {
 .social-sidebar {
   animation: slideIn 0.5s ease-out;
 }
+
 /* ========== GLOBAL ========== */
 * {
   box-sizing: border-box;
@@ -662,9 +460,8 @@ body {
 
 .hotel-header-container {
   max-width: 1200px;
- 
+  margin: 0 auto;
   padding: 0 20px;
-  margin-top: 30px;
 }
 
 /* Top Row: Logo, Hotel Info, Hotel Details Button */
@@ -691,7 +488,6 @@ body {
 }
 
 .hotel-logo img {
- 
   margin-top: 10px;
   height: 65px;
   width: auto;
@@ -715,7 +511,7 @@ body {
   font-size: 26px;
   font-weight: 600;
   color: black;
-  margin: 48 0 4px 0;
+  margin: 0 0 4px 0;
   line-height: 1.2;
 }
 
@@ -781,7 +577,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin-top: 8px;
+  margin-top: -14px;
+  margin-bottom: 29px;
 }
 
 .booking-field {
@@ -1303,7 +1100,7 @@ body {
 
 /* ========== STICKY NAV ========== */
 :root {
-  --header-height: 155px;
+  --header-height: 87px;
   --sticky-gap: 20px;
 }
 
@@ -3870,7 +3667,6 @@ body {
   }
 
   .hotel-top-row {
-    margin-top: 40px;
     flex-direction: row;
     gap: 8px;
     margin-bottom: 8px;
@@ -3958,11 +3754,11 @@ body {
 
   .sticky-nav-container {
     display: flex;
-      align-items: center;
-      padding: 0 0.5rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+    align-items: center;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .nav-item {
