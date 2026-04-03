@@ -5342,7 +5342,6 @@ body.disable-animations * {
    border-radius: 12px;
    padding: 1.09rem;
    width: 300px;
-   
    }
 .policy-card-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .policy-icon { font-size: 16px; }
