@@ -6,7 +6,93 @@
   margin-top: 8px;
   font-style: italic;
 }
+/* =========================
+   NAV CONTAINER
+========================= */
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 10px 12px;
+
+  /* Optional: background */
+  background: #fff;
+  border-bottom: 1px solid #eee;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.nav-container::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}
+
+/* =========================
+   NAV ITEMS
+========================= */
+.nav-item {
+  flex: 0 0 auto;
+  white-space: nowrap;
+
+  padding: 8px 16px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #555;
+  background: #f5f5f5;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.nav-item:hover {
+  background: #e0e0e0;
+}
+
+/* Active Tab */
+.nav-item.active {
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* =========================
+   SCROLL SNAP (Premium UX)
+========================= */
+.nav-container {
+  scroll-snap-type: x mandatory;
+}
+
+.nav-item {
+  scroll-snap-align: center;
+}
+
+/* =========================
+   RESPONSIVE (OPTIONAL)
+========================= */
+@media (max-width: 768px) {
+  .nav-container {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .nav-item {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
 
 /*social icon */
 .social-sidebar {
@@ -3650,7 +3736,7 @@ body {
 /* Mobile - Small (max-width: 575px) */
 @media (max-width: 575px) {
   :root {
-    --header-height: 160px;
+    --header-height: 85px;
     --sticky-gap: -32px;
   }
 
@@ -3746,7 +3832,7 @@ body {
 
   .sticky-nav {
     position: sticky;
-    top: 155px;
+    top: 88px;
     margin: 2px -5px 0;
     max-width: unset;
     z-index: 99;

@@ -382,25 +382,106 @@ window.addEventListener('click', function (event) {
   if (hotelModal && event.target === hotelModal) closeHotelDetailsModal();
 });
 
-// ===== SCROLL SPY =====
+// =========================
+// Sections Mapping
+// =========================
 const sections = ['overview', 'guest-rooms', 'amenities', 'location', 'info', 'reviews', 'contact'];
+
+let isManualScrolling = false;
+
+// =========================
+// Handle Vertical Scroll
+// =========================
 function handleScroll() {
+  if (isManualScrolling) return;
+
   const scrollPosition = window.scrollY + 200;
+  const navBtns = document.querySelectorAll('.nav-item');
+
   for (let i = sections.length - 1; i >= 0; i--) {
     const el = document.getElementById(sections[i]);
+
     if (el && scrollPosition >= el.offsetTop) {
-      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-      const navBtns = document.querySelectorAll('.nav-item');
-      if (navBtns[i]) navBtns[i].classList.add('active');
+
+      // Remove all active classes
+      navBtns.forEach(btn => btn.classList.remove('active'));
+
+      // Add active to current
+      if (navBtns[i]) {
+        navBtns[i].classList.add('active');
+
+        // Auto scroll nav horizontally
+        scrollNavToActive(navBtns[i]);
+      }
+
       break;
     }
   }
 }
-window.addEventListener('scroll', handleScroll);
 
+// =========================
+// Auto Horizontal Scroll
+// =========================
+function scrollNavToActive(activeBtn) {
+  const navContainer = document.querySelector('.nav-container');
+
+  if (!navContainer || !activeBtn) return;
+
+  const containerWidth = navContainer.offsetWidth;
+  const btnLeft = activeBtn.offsetLeft;
+  const btnWidth = activeBtn.offsetWidth;
+
+  // Center the active button
+  const scrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+
+  navContainer.scrollTo({
+    left: scrollLeft,
+    behavior: 'smooth'
+  });
+}
+
+// =========================
+// Scroll Event (Debounced)
+// =========================
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(handleScroll, 50);
+});
+
+// =========================
+// Click Scroll to Section
+// =========================
 function scrollToSection(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!el) return;
+
+  isManualScrolling = true;
+
+  const navBtns = document.querySelectorAll('.nav-item');
+  const sectionIndex = sections.indexOf(id);
+
+  // Update active state immediately
+  navBtns.forEach(btn => btn.classList.remove('active'));
+
+  if (sectionIndex !== -1 && navBtns[sectionIndex]) {
+    navBtns[sectionIndex].classList.add('active');
+
+    // Auto center active tab
+    scrollNavToActive(navBtns[sectionIndex]);
+  }
+
+  // Smooth scroll to section
+  el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
+  // Re-enable auto tracking after scroll
+  setTimeout(() => {
+    isManualScrolling = false;
+  }, 800);
 }
 
 // ===== ROOM FILTER =====
