@@ -1316,10 +1316,10 @@ body {
 .overview-right-wrapper::before {
   content: "";
   position: absolute;
-  top: 6px;
-  right: -30px;
-  width: 400px;
-  height: 363px;
+  top: 14px;
+  right: -25px;
+  width: 381px;
+  height: 346px;
   background: #58752D;
   z-index: 0;
 }
