@@ -1316,7 +1316,7 @@ body {
 .overview-right-wrapper::before {
   content: "";
   position: absolute;
-  top: 16px;
+  top: 6px;
   right: -30px;
   width: 400px;
   height: 363px;
