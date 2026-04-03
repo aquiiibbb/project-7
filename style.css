@@ -5336,7 +5336,14 @@ body.disable-animations * {
  }
 .terms-sub { font-size: 14px; color: #888; margin-bottom: 2rem; }
 .policy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-.policy-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.25rem; }
+.policy-card {
+   background: #fff;
+   border: 1px solid #e5e7eb; 
+   border-radius: 12px;
+   padding: 1.09rem;
+   width: 300px;
+   
+   }
 .policy-card-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .policy-icon { font-size: 16px; }
 .policy-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
