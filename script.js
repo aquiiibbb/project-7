@@ -385,7 +385,7 @@ window.addEventListener('click', function (event) {
 // =========================
 // Sections Mapping
 // =========================
-const sections = ['overview', 'guest-rooms', 'amenities', 'location', 'info', 'reviews', 'contact'];
+const sections = ['overview', 'guest-rooms', 'amenities', 'location', 'info', 'reviews', 'contact', 'terms'];
 
 let isManualScrolling = false;
 
@@ -403,14 +403,10 @@ function handleScroll() {
 
     if (el && scrollPosition >= el.offsetTop) {
 
-      // Remove all active classes
       navBtns.forEach(btn => btn.classList.remove('active'));
 
-      // Add active to current
       if (navBtns[i]) {
         navBtns[i].classList.add('active');
-
-        // Auto scroll nav horizontally
         scrollNavToActive(navBtns[i]);
       }
 
@@ -431,7 +427,6 @@ function scrollNavToActive(activeBtn) {
   const btnLeft = activeBtn.offsetLeft;
   const btnWidth = activeBtn.offsetWidth;
 
-  // Center the active button
   const scrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
 
   navContainer.scrollTo({
@@ -462,23 +457,18 @@ function scrollToSection(id) {
   const navBtns = document.querySelectorAll('.nav-item');
   const sectionIndex = sections.indexOf(id);
 
-  // Update active state immediately
   navBtns.forEach(btn => btn.classList.remove('active'));
 
   if (sectionIndex !== -1 && navBtns[sectionIndex]) {
     navBtns[sectionIndex].classList.add('active');
-
-    // Auto center active tab
     scrollNavToActive(navBtns[sectionIndex]);
   }
 
-  // Smooth scroll to section
   el.scrollIntoView({
     behavior: 'smooth',
     block: 'start'
   });
 
-  // Re-enable auto tracking after scroll
   setTimeout(() => {
     isManualScrolling = false;
   }, 800);
