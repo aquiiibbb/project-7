@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Amenities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 5px;
+        }
+        
+        .hotel-amenities-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .amenities-header-section {
+            background: #bbe37e;
+            color: white;
+            padding: 15px 20px;
+            position: relative;
+        }
+        
+        .amenities-main-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 26px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .amenities-content-area {
+            padding: 20px;
+        }
+        
+        .hotel-services-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        
+        .amenities-display-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .single-amenity-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .single-amenity-card:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        
+        .amenity-visual-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .amenity-description-text {
+            font-size: 12px;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .accessibility-features-section {
+            margin-top: 20px;
+        }
+        
+        .accessibility-main-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        
+        .accessibility-info-subtitle {
+            color: #6b7280;
+            font-size: 11px;
+            margin-bottom: 12px;
+        }
+        
+        .hotel-offers-section {
+            margin-top: 20px;
+        }
+        
+        .offers-section-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .offers-description-paragraph {
+            color: #6b7280;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        .additional-cost-disclaimer {
+            color: #9ca3af;
+            font-size: 10px;
+            margin-top: 12px;
+        }
+        
+        /* Icon color variations */
+        .icon-style-blue { background-color: #dbeafe; color: #3b82f6; }
+        .icon-style-purple { background-color: #ede9fe; color: #8b5cf6; }
+        .icon-style-green { background-color: #dcfce7; color: #22c55e; }
+        .icon-style-orange { background-color: #fed7aa; color: #f97316; }
+        .icon-style-yellow { background-color: #fef3c7; color: #f59e0b; }
+        .icon-style-red { background-color: #fecaca; color: #ef4444; }
+        .icon-style-gray { background-color: #f3f4f6; color: #6b7280; }
+        .icon-style-pink { background-color: #fce7f3; color: #ec4899; }
+        .icon-style-indigo { background-color: #e0e7ff; color: #6366f1; }
+        .icon-style-teal { background-color: #ccfbf1; color: #14b8a6; }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 3px;
+            }
+
+            .hotel-amenities-wrapper {
+                max-width: 100%;
+            }
+
+            .amenities-header-section {
+                padding: 12px 15px;
+            }
+
+            .amenities-main-title {
+                font-size: 16px;
+            }
+
+            .close-button {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                top: 12px;
+                right: 12px;
+            }
+
+            .amenities-content-area {
+                padding: 15px;
+            }
+
+            .hotel-services-title {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .amenities-display-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            .single-amenity-card {
+                padding: 8px 10px;
+                gap: 6px;
+            }
+
+            .amenity-visual-icon {
+                width: 16px;
+                height: 16px;
+                font-size: 11px;
+            }
+
+            .amenity-description-text {
+                font-size: 11px;
+            }
+
+            .accessibility-features-section {
+                margin-top: 15px;
+            }
+
+            .accessibility-main-heading {
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+
+            .accessibility-info-subtitle {
+                font-size: 10px;
+                margin-bottom: 10px;
+            }
+
+            .hotel-offers-section {
+                margin-top: 15px;
+            }
+
+            .offers-section-heading {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .offers-description-paragraph {
+                font-size: 11px;
+                line-height: 1.4;
+            }
+
+            .additional-cost-disclaimer {
+                font-size: 9px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+            body {
+                padding: 2px;
+            }
+
+            .hotel-amenities-wrapper {
+                border-radius: 6px;
+            }
+
+            .amenities-header-section {
+                padding: 10px 12px;
+            }
+
+            .amenities-main-title {
+                font-size: 14px;
+            }
+
+            .close-button {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .amenities-content-area {
+                padding: 12px;
+            }
+
+            .hotel-services-title {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .amenities-display-grid {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .single-amenity-card {
+                padding: 6px 8px;
+                gap: 5px;
+            }
+
+            .amenity-visual-icon {
+                width: 14px;
+                height: 14px;
+                font-size: 10px;
+            }
+
+            .amenity-description-text {
+                font-size: 10px;
+            }
+
+            .accessibility-features-section {
+                margin-top: 12px;
+            }
+
+            .accessibility-main-heading {
+                font-size: 13px;
+                margin-bottom: 3px;
+            }
+
+            .accessibility-info-subtitle {
+                font-size: 9px;
+                margin-bottom: 8px;
+            }
+
+            .hotel-offers-section {
+                margin-top: 12px;
+            }
+
+            .offers-section-heading {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .offers-description-paragraph {
+                font-size: 10px;
+                line-height: 1.4;
+            }
+
+            .additional-cost-disclaimer {
+                font-size: 8px;
+                margin-top: 8px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .amenities-header-section {
+                padding: 10px 15px;
+            }
+
+            .amenities-main-title {
+                font-size: 14px;
+            }
+
+            .amenities-content-area {
+                padding: 12px;
+            }
+
+            .amenities-display-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .close-button {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .single-amenity-card {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hotel-amenities-wrapper">
+        <div class="amenities-header-section">
+            <h1 class="amenities-main-title">Amenities</h1>
+            <button class="close-button" onclick="closeModal()">×</button>
+        </div>
+        
+        <div class="amenities-content-area">
+            <h2 class="hotel-services-title">Hotel Amenities</h2>
+            
+            <div class="amenities-display-grid">
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-blue">🏊</div>
+                    <div class="amenity-description-text">Indoor Heated Pool</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-purple">🍳</div>
+                    <div class="amenity-description-text">Free Hot Breakfast</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-green">🚛</div>
+                    <div class="amenity-description-text">Truck Parking</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-orange">💪</div>
+                    <div class="amenity-description-text">Fitness Center</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-yellow">⭐</div>
+                    <div class="amenity-description-text">Government Travelers: FEMA Approved</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-blue">🅿️</div>
+                    <div class="amenity-description-text">Free Parking</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-blue">🏢</div>
+                    <div class="amenity-description-text">Elevator(s)</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-red">🚭</div>
+                    <div class="amenity-description-text">100% Smoke Free Hotel</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-pink">🐕</div>
+                    <div class="amenity-description-text">No Pets Allowed – Only service animals</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-teal">🚌</div>
+                    <div class="amenity-description-text">Bus Parking</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-orange">🧺</div>
+                    <div class="amenity-description-text">Laundry*</div>
+                </div>
+                
+                <div class="single-amenity-card">
+                    <div class="amenity-visual-icon icon-style-purple">💼</div>
+                    <div class="amenity-description-text">Business Center</div>
+                </div>
+            </div>
+            
+            <div class="accessibility-features-section">
+                <h3 class="accessibility-main-heading">Accessibility amenities</h3>
+                <p class="accessibility-info-subtitle">(Amenities may vary by room type)</p>
+                
+                <div class="amenities-display-grid">
+                    <div class="single-amenity-card">
+                        <div class="amenity-visual-icon icon-style-blue">🅿️</div>
+                        <div class="amenity-description-text">Free Accessible Parking</div>
+                    </div>
+                    
+                    <div class="single-amenity-card">
+                        <div class="amenity-visual-icon icon-style-green">✓</div>
+                        <div class="amenity-description-text">Accessible Features</div>
+                    </div>
+                    
+                    <div class="single-amenity-card">
+                        <div class="amenity-visual-icon icon-style-green">✓</div>
+                        <div class="amenity-description-text">Accessible Hotel</div>
+                    </div>
+                    
+                    <div class="single-amenity-card">
+                        <div class="amenity-visual-icon icon-style-blue">♿</div>
+                        <div class="amenity-description-text">Accessible ramps</div>
+                    </div>
+                </div>
+                
+                <p class="additional-cost-disclaimer">*May require an additional cost</p>
+            </div>
+            
+            <div class="hotel-offers-section">
+                <h3 class="offers-section-heading">What this place offers</h3>
+                <p class="offers-description-paragraph">
+                    The amenities at our Searcy hotel include free WiFi in guest rooms and common areas, 
+                    free hot breakfast and coffee each morning and free parking for compact and 
+                    oversized vehicles. Guests can also enjoy access to our seasonal outdoor pool, 
+                    business center and laundry facilities.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeModal() {
+            console.log('Modal closed');
+            document.querySelector('.hotel-amenities-wrapper').style.display = 'none';
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Smooth animation on load
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapper = document.querySelector('.hotel-amenities-wrapper');
+            wrapper.style.opacity = '0';
+            wrapper.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                wrapper.style.transition = 'all 0.4s ease';
+                wrapper.style.opacity = '1';
+                wrapper.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

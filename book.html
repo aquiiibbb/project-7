@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 5px;
+        }
+
+        .room-details-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .room-header-section {
+            background: #bbe37e;
+            color: white;
+            padding: 15px 20px;
+            position: relative;
+        }
+
+        .room-main-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .room-close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 26px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .room-close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .room-image-carousel {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .room-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-nav-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .room-image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px 15px 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .room-content-area {
+            padding: 20px;
+        }
+
+        .room-type-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .room-bed-info {
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .room-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .room-feature-item {
+            text-align: center;
+            padding: 12px;
+        }
+
+        .room-feature-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            border-radius: 50%;
+        }
+
+        .room-feature-text {
+            font-size: 11px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .amenities-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .amenities-category-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .amenity-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .amenity-card:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .amenity-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .amenity-name {
+            font-size: 12px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .cost-disclaimer {
+            color: #9ca3af;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .book-now-button {
+            background: #4b6622;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            float: right;
+            transition: all 0.2s ease;
+        }
+
+        .book-now-button:hover {
+            background: #a8d66a;
+            transform: translateY(-1px);
+        }
+
+        /* Icon colors */
+        .icon-purple {
+            background-color: #ede9fe;
+            color: #8b5cf6;
+        }
+
+        .icon-red {
+            background-color: #fecaca;
+            color: #ef4444;
+        }
+
+        .icon-gray {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .icon-blue {
+            background-color: #dbeafe;
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background-color: #dcfce7;
+            color: #22c55e;
+        }
+
+        .icon-orange {
+            background-color: #fed7aa;
+            color: #f97316;
+        }
+
+        .icon-pink {
+            background-color: #fce7f3;
+            color: #ec4899;
+        }
+
+        .icon-yellow {
+            background-color: #fef3c7;
+            color: #f59e0b;
+        }
+
+        .icon-indigo {
+            background-color: #e0e7ff;
+            color: #6366f1;
+        }
+
+        .icon-teal {
+            background-color: #ccfbf1;
+            color: #14b8a6;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 3px;
+            }
+
+            .room-details-container {
+                max-width: 100%;
+            }
+
+            .room-header-section {
+                padding: 12px 15px;
+            }
+
+            .room-main-title {
+                font-size: 16px;
+            }
+
+            .room-close-button {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                top: 12px;
+                right: 12px;
+            }
+
+            .room-image-carousel {
+                height: 180px;
+            }
+
+            .carousel-nav-button {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .room-image-caption {
+                font-size: 11px;
+                padding: 15px 12px 10px;
+            }
+
+            .room-content-area {
+                padding: 15px;
+            }
+
+            .room-type-title {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+
+            .room-bed-info {
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+
+            .room-features-grid {
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            .room-feature-item {
+                padding: 10px;
+            }
+
+            .room-feature-icon {
+                width: 32px;
+                height: 32px;
+                margin: 0 auto 6px;
+                font-size: 16px;
+            }
+
+            .room-feature-text {
+                font-size: 10px;
+            }
+
+            .amenities-section-title {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .amenities-category-title {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .amenity-card {
+                padding: 8px 10px;
+                gap: 6px;
+            }
+
+            .amenity-icon {
+                width: 16px;
+                height: 16px;
+                font-size: 11px;
+            }
+
+            .amenity-name {
+                font-size: 11px;
+            }
+
+            .cost-disclaimer {
+                font-size: 10px;
+                margin-bottom: 12px;
+            }
+
+            .book-now-button {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+            body {
+                padding: 2px;
+            }
+
+            .room-details-container {
+                border-radius: 6px;
+            }
+
+            .room-header-section {
+                padding: 10px 12px;
+            }
+
+            .room-main-title {
+                font-size: 14px;
+            }
+
+            .room-close-button {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .room-image-carousel {
+                height: 150px;
+            }
+
+            .carousel-nav-button {
+                width: 26px;
+                height: 26px;
+                font-size: 12px;
+            }
+
+            .carousel-prev {
+                left: 8px;
+            }
+
+            .carousel-next {
+                right: 8px;
+            }
+
+            .room-image-caption {
+                font-size: 10px;
+                padding: 12px 10px 8px;
+            }
+
+            .room-content-area {
+                padding: 12px;
+            }
+
+            .room-type-title {
+                font-size: 14px;
+                margin-bottom: 3px;
+            }
+
+            .room-bed-info {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+
+            .room-features-grid {
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+
+            .room-feature-item {
+                padding: 8px;
+            }
+
+            .room-feature-icon {
+                width: 28px;
+                height: 28px;
+                margin: 0 auto 5px;
+                font-size: 14px;
+            }
+
+            .room-feature-text {
+                font-size: 9px;
+            }
+
+            .amenities-section-title {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .amenities-category-title {
+                font-size: 11px;
+                margin-bottom: 6px;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+                gap: 5px;
+                margin-bottom: 10px;
+            }
+
+            .amenity-card {
+                padding: 6px 8px;
+                gap: 5px;
+            }
+
+            .amenity-icon {
+                width: 14px;
+                height: 14px;
+                font-size: 10px;
+            }
+
+            .amenity-name {
+                font-size: 10px;
+            }
+
+            .cost-disclaimer {
+                font-size: 9px;
+                margin-bottom: 10px;
+            }
+
+            .book-now-button {
+                width: 100%;
+                float: none;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .room-image-carousel {
+                height: 140px;
+            }
+
+            .room-features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .room-close-button {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .carousel-nav-button {
+                width: 34px;
+                height: 34px;
+            }
+
+            .book-now-button {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="room-details-container">
+        <div class="room-header-section">
+            <h1 class="room-main-title">Room Details</h1>
+            <button class="room-close-button" onclick="closeRoomDetails()">×</button>
+        </div>
+
+        <div class="room-image-carousel">
+            <img src="https://prodimagesbucket.blob.core.windows.net/roomtype-images/35780/12358/2dcad9d8-1f45-42b6-bb04-c0c63dc497e7"
+                alt="Hotel Room" class="room-image">
+
+            <button class="carousel-nav-button carousel-prev" onclick="previousImage()">‹</button>
+            <button class="carousel-nav-button carousel-next" onclick="nextImage()">›</button>
+
+            <div class="room-image-caption">
+                Guest room with one king bed and added amenities | Sleep Inn, Searcy
+            </div>
+        </div>
+
+        <div class="room-content-area">
+            <h2 class="room-type-title">1 King Bed, Non Smoking</h2>
+            <p class="room-bed-info">1 king bed</p>
+
+            <div class="room-features-grid">
+                <div class="room-feature-item">
+                    <div class="room-feature-icon icon-purple">👥</div>
+                    <div class="room-feature-text">2 Guests</div>
+                </div>
+
+                <div class="room-feature-item">
+                    <div class="room-feature-icon icon-red">🚭</div>
+                    <div class="room-feature-text">No Smoking</div>
+                </div>
+
+                <div class="room-feature-item">
+                    <div class="room-feature-icon icon-gray">📐</div>
+                    <div class="room-feature-text">28 sqmt</div>
+                </div>
+            </div>
+
+            <h3 class="amenities-section-title">Amenities</h3>
+
+            <h4 class="amenities-category-title">Room</h4>
+
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-blue">🚿</div>
+                    <div class="amenity-name">Shower</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-blue">📺</div>
+                    <div class="amenity-name">55-Inch TV with Soundbar</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-blue">📺</div>
+                    <div class="amenity-name">TV, Cable/Satellite</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-blue">💻</div>
+                    <div class="amenity-name">Desk with Electrical Outlet</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-blue">❄️</div>
+                    <div class="amenity-name">Refrigerator</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-pink">💨</div>
+                    <div class="amenity-name">Hair Dryer</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-blue">👔</div>
+                    <div class="amenity-name">Iron and Ironing Board</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-pink">🍽️</div>
+                    <div class="amenity-name">Microwave</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-orange">☕</div>
+                    <div class="amenity-name">Coffee Maker</div>
+                </div>
+
+                <div class="amenity-card">
+                    <div class="amenity-icon icon-purple">📡</div>
+                    <div class="amenity-name">Wireless Streaming TV Service</div>
+                </div>
+            </div>
+
+            <p class="cost-disclaimer">*May require an additional cost</p>
+
+            <button class="book-now-button" onclick="bookRoom()">Book Now</button>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = [
+            "https://prodimagesbucket.blob.core.windows.net/roomtype-images/35780/12358/2dcad9d8-1f45-42b6-bb04-c0c63dc497e7",
+            "https://prodimagesbucket.blob.core.windows.net/roomtype-images/35780/12358/39cf0a56-00aa-48c4-b4da-42a087b46d0c",
+            "https://prodimagesbucket.blob.core.windows.net/roomtype-images/35780/12358/41c79b37-7e6d-444d-b4c5-3fe268f2e6fd"
+        ];
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.querySelector('.room-image').src = images[currentImageIndex];
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            document.querySelector('.room-image').src = images[currentImageIndex];
+        }
+
+        function closeRoomDetails() {
+            console.log('Room details closed');
+            document.querySelector('.room-details-container').style.display = 'none';
+        }
+
+        function bookRoom() {
+            alert('Booking functionality would be implemented here!');
+            console.log('Book Now clicked');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') {
+                previousImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'Escape') {
+                closeRoomDetails();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Rooms - All Available Rooms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .back-btn {
+            background: #6b8c3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #435a20;
+            transform: translateY(-1px);
+        }
+
+        .room-selection-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #6b8c3a;
+            color: white;
+            border-color: #6b8c3a;
+        }
+
+        /* ── Room Cards ── */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .room-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.05);
+        }
+
+        .room-count {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .availability-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .availability-badge.available {
+            background: #10b981;
+        }
+
+        .availability-badge.limited {
+            background: #f59e0b;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px 15px 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .room-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .view-photos {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .room-details {
+            padding: 20px;
+        }
+
+        .room-details h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .room-specs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .spec {
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .room-features {
+            margin-bottom: 15px;
+        }
+
+        .feature-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .feature-row span {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .room-details-btn {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .room-details-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .room-pricing {
+            padding: 15px 20px;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .book-room-btn {
+            background: #6b8c3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .book-room-btn:hover {
+            background: #435a20;
+            transform: translateY(-1px);
+        }
+
+        /* ── Modal Overlay ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            overflow-y: auto;
+        }
+
+        .room-modal {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 680px;
+            margin: 40px auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        .modal-header {
+            padding: 18px 20px 14px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        /* Image section */
+        .modal-image-section {
+            position: relative;
+        }
+
+        .modal-main-image {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .modal-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+            color: white;
+            font-size: 12px;
+            padding: 24px 14px 10px;
+        }
+
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 5;
+        }
+
+        .modal-nav-btn:hover {
+            background: white;
+        }
+
+        .modal-prev {
+            left: 12px;
+        }
+
+        .modal-next {
+            right: 12px;
+        }
+
+        /* Info section */
+        .modal-info-section {
+            padding: 20px;
+        }
+
+        .modal-info-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .modal-bed-info {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .modal-features {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .modal-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .modal-feature-icon {
+            font-size: 18px;
+        }
+
+        .modal-amenities-section {
+            margin-bottom: 20px;
+        }
+
+        .modal-amenities-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 6px;
+        }
+
+        .modal-amenities-section h5 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .modal-amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        .modal-amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #374151;
+        }
+
+        .modal-amenity-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .modal-pricing {
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .modal-book-btn {
+            background: #6b8c3a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .modal-book-btn:hover {
+            background: #435a20;
+            transform: translateY(-1px);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .room-modal {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            .modal-amenities-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .filter-btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.history.back()">← Back to Hotel</button>
+
+        <div class="page-header">
+            <h1 class="page-title">All Available Rooms</h1>
+            <p class="page-subtitle">Choose from our selection of comfortable and well-equipped rooms</p>
+        </div>
+
+        <div class="room-selection-filters">
+            <button class="filter-btn active" onclick="filterRooms('all', this)">All Rooms</button>
+            <button class="filter-btn" onclick="filterRooms('1bed', this)">🛏️ 1 Bed</button>
+            <button class="filter-btn" onclick="filterRooms('2bed', this)">🛏️ 2 Beds</button>
+            <button class="filter-btn" onclick="filterRooms('suite', this)">🏨 Suites</button>
+            <button class="filter-btn" onclick="filterRooms('handicap', this)">♿ Accessible</button>
+            <button class="filter-btn" onclick="filterRooms('jacuzzi', this)">🛁 Jacuzzi</button>
+        </div>
+
+        <div class="rooms-grid" id="rooms-grid">
+
+            <!-- Room 1: King Bed Non-Smoking -->
+            <div class="room-card" data-type="1bed">
+                <div class="room-image" onclick="openRoomModal('room1-modal')" style="cursor:pointer">
+                    <img src="Assets/1.jpeg" alt="King Beds - Non Smoking (NK)" />
+                    <span class="room-count">5 Rooms</span>
+                    <span class="availability-badge available">Available</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>King Bed – Non Smoking (NK)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">🚭 Non-Smoking</span>
+                        <span class="spec">📐 300 sq ft</span>
+                        <span class="spec">👥 Max 2 Guests</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• Microwave &amp; Coffee maker</span>
+                            <span>• 32-inch TV with cable/satellite</span>
+                            <span>• Air conditioning &amp; Free WiFi</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room1-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 2: King Bed Smoking -->
+            <div class="room-card" data-type="1bed">
+                <div class="room-image" onclick="openRoomModal('room2-modal')" style="cursor:pointer">
+                    <img src="Assets/13.jpeg" alt="King Beds - Smoking (K)" />
+                    <span class="room-count">4 Rooms</span>
+                    <span class="availability-badge available">Available</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>King Bed – Smoking (K)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">🚬 Smoking</span>
+                        <span class="spec">📐 350 sq ft</span>
+                        <span class="spec">👥 Max 2 Guests</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• 32-inch TV with cable/satellite</span>
+                            <span>• Coffee maker &amp; Air conditioning</span>
+                            <span>• Desk &amp; Free WiFi</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room2-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 3: Handicap King Non-Smoking -->
+            <div class="room-card" data-type="handicap">
+                <div class="room-image" onclick="openRoomModal('room3-modal')" style="cursor:pointer">
+                    <img src="Assets/11.jpeg" alt="Handicap King Room - Non Smoking (HNK)" />
+                    <span class="room-count">2 Rooms</span>
+                    <span class="availability-badge limited">Only 2 Left</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>Handicap King Room – Non Smoking (HNK)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">♿ Accessible</span>
+                        <span class="spec">🚭 Non-Smoking</span>
+                        <span class="spec">📐 400 sq ft</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• Tea/Coffee machine &amp; Bed linen</span>
+                            <span>• Bathtub, Shampoo &amp; Conditioner</span>
+                            <span>• Body soap + 17 more amenities</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room3-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 4: King Business Suite Non-Smoking -->
+            <div class="room-card" data-type="suite">
+                <div class="room-image" onclick="openRoomModal('room4-modal')" style="cursor:pointer">
+                    <img src="Assets/13.jpeg" alt="King Business Suites - Non Smoking (BNK)" />
+                    <span class="room-count">3 Rooms</span>
+                    <span class="availability-badge available">Available</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>King Business Suite – Non Smoking (BNK)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">🚭 Non-Smoking</span>
+                        <span class="spec">📐 350 sq ft</span>
+                        <span class="spec">👥 Max 3 Guests</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• 32-inch TV with cable/satellite</span>
+                            <span>• Coffee maker &amp; Air conditioning</span>
+                            <span>• Ergonomic desk &amp; Free WiFi</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room4-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 5: Two Queen Beds Non-Smoking -->
+            <div class="room-card" data-type="2bed">
+                <div class="room-image" onclick="openRoomModal('room5-modal')" style="cursor:pointer">
+                    <img src="Assets/10.jpeg" alt="Two Queen Beds - Non Smoking (NQQ)" />
+                    <span class="room-count">1 Room</span>
+                    <span class="availability-badge limited">Only 1 Left</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>Two Queen Beds – Non Smoking (NQQ)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 2 Queen Beds</span>
+                        <span class="spec">🚭 Non-Smoking</span>
+                        <span class="spec">📐 380 sq ft</span>
+                        <span class="spec">👥 Max 4 Guests</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• 32-inch TV &amp; Air conditioning</span>
+                            <span>• Coffee maker &amp; Work desk</span>
+                            <span>• Free WiFi</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room5-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 6: King Business Suite Smoking -->
+            <div class="room-card" data-type="suite">
+                <div class="room-image" onclick="openRoomModal('room6-modal')" style="cursor:pointer">
+                    <img src="Assets/1.jpeg" alt="King Business Suites - Smoking (BK)" />
+                    <span class="room-count">1 Room</span>
+                    <span class="availability-badge limited">Only 1 Left</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>King Business Suite – Smoking (BK)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">🚬 Smoking</span>
+                        <span class="spec">📐 320 sq ft</span>
+                        <span class="spec">👥 Max 3 Guests</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• Tea/Coffee machine &amp; Bed linen</span>
+                            <span>• 42-inch TV &amp; Mini fridge</span>
+                            <span>• Free WiFi</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room6-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 7: Two Queen Beds Smoking -->
+            <div class="room-card" data-type="2bed">
+                <div class="room-image" onclick="openRoomModal('room7-modal')" style="cursor:pointer">
+                    <img src="Assets/13.jpeg" alt="Two Queen Beds - Smoking (QQ)" />
+                    <span class="room-count">6 Rooms</span>
+                    <span class="availability-badge available">Available</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>Two Queen Beds – Smoking (QQ)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 2 Queen Beds</span>
+                        <span class="spec">🚬 Smoking</span>
+                        <span class="spec">📐 280 sq ft</span>
+                        <span class="spec">👥 Max 4 Guests</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• 32-inch TV &amp; Air conditioning</span>
+                            <span>• Work desk &amp; Free WiFi</span>
+                            <span>• Basic amenities</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room7-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 8: Handicap Two Queen Beds Non-Smoking -->
+            <div class="room-card" data-type="handicap">
+                <div class="room-image" onclick="openRoomModal('room8-modal')" style="cursor:pointer">
+                    <img src="Assets/1.jpeg" alt="Handicap Two Queen Beds - Non Smoking (HNQQ)" />
+                    <span class="room-count">3 Rooms</span>
+                    <span class="availability-badge available">Available</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>Handicap Two Queen Beds – Non Smoking (HNQQ)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 2 Queen Beds</span>
+                        <span class="spec">♿ Accessible</span>
+                        <span class="spec">🚭 Non-Smoking</span>
+                        <span class="spec">📐 320 sq ft</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• 42-inch TV &amp; Mini fridge</span>
+                            <span>• Coffee maker &amp; Executive desk</span>
+                            <span>• Free WiFi • Max 4 guests</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room8-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 9: King Jacuzzi Non-Smoking -->
+            <div class="room-card" data-type="jacuzzi">
+                <div class="room-image" onclick="openRoomModal('room9-modal')" style="cursor:pointer">
+                    <img src="Assets/18.jpeg" alt="King Jacuzzi - Non Smoking (SNK)" />
+                    <span class="room-count">4 Rooms</span>
+                    <span class="availability-badge available">Available</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>King Jacuzzi – Non Smoking (SNK)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">🛁 Jacuzzi</span>
+                        <span class="spec">🚭 Non-Smoking</span>
+                        <span class="spec">📐 250 sq ft</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• Private Jacuzzi</span>
+                            <span>• 28-inch TV &amp; Air conditioning</span>
+                            <span>• Coffee maker &amp; Free WiFi</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room9-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+            <!-- Room 10: King Jacuzzi Smoking -->
+            <div class="room-card" data-type="jacuzzi">
+                <div class="room-image" onclick="openRoomModal('room10-modal')" style="cursor:pointer">
+                    <img src="Assets/11.jpeg" alt="King Jacuzzi - Smoking (SK)" />
+                    <span class="room-count">1 Room</span>
+                    <span class="availability-badge limited">Only 1 Left</span>
+                    <div class="image-overlay"><span class="view-photos">📷 View Details</span></div>
+                </div>
+                <div class="room-details">
+                    <h3>King Jacuzzi – Smoking (SK)</h3>
+                    <div class="room-specs">
+                        <span class="spec">🛏️ 1 King Bed</span>
+                        <span class="spec">🛁 Jacuzzi</span>
+                        <span class="spec">🚬 Smoking</span>
+                        <span class="spec">📐 320 sq ft</span>
+                    </div>
+                    <div class="room-features">
+                        <div class="feature-row">
+                            <span>• Private Jacuzzi &amp; Premium bedding</span>
+                            <span>• 42-inch TV &amp; Mini fridge</span>
+                            <span>• Free WiFi • Max 2 guests</span>
+                        </div>
+                    </div>
+                    <button class="room-details-btn" onclick="openRoomModal('room10-modal')">Room Details</button>
+                </div>
+                <div class="room-pricing">
+                    <button class="book-room-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+
+        </div><!-- /rooms-grid -->
+    </div><!-- /container -->
+
+
+    <!-- ════════════════════════════════════════
+     MODALS
+════════════════════════════════════════ -->
+
+    <!-- Room 1 Modal -->
+    <div class="modal-overlay" id="room1-modal" onclick="overlayClose(event,'room1-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room1-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room1-img" src="Assets/1.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room1',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room1',1)">›</button>
+                    <div class="modal-image-caption">Guest room with one king bed | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>King Bed – Non Smoking (NK)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 2 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛏️</div><span>1 King Bed</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>300 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚭</div><span>Non-Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Air conditioning</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🍽️</div><span>Microwave</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Ergonomic desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>32-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📡</div><span>Cable/satellite</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🌟</div><span>Premium channels</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 2 Modal -->
+    <div class="modal-overlay" id="room2-modal" onclick="overlayClose(event,'room2-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room2-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room2-img" src="Assets/13.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room2',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room2',1)">›</button>
+                    <div class="modal-image-caption">King bed smoking room | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>King Bed – Smoking (K)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 2 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛏️</div><span>1 King Bed</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>350 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚬</div><span>Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Air conditioning</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Ergonomic desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>32-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📡</div><span>Cable/satellite</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🌟</div><span>Premium channels</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚬</div><span>Smoking allowed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 3 Modal -->
+    <div class="modal-overlay" id="room3-modal" onclick="overlayClose(event,'room3-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room3-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room3-img" src="Assets/11.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room3',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room3',1)">›</button>
+                    <div class="modal-image-caption">Handicap King room | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>Handicap King Room – Non Smoking (HNK)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 2 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">♿</div><span>Accessible</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>400 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚭</div><span>Non-Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Tea/Coffee machine</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🛏️</div><span>Premium bed linen</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🧴</div><span>Body soap &amp; shampoo</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🧴</div><span>Conditioner</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🛁</div><span>Bathtub</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">♿</div><span>Wheelchair accessible</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚪</div><span>Wide doorways</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🤲</div><span>Grab bars</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>TV</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 4 Modal -->
+    <div class="modal-overlay" id="room4-modal" onclick="overlayClose(event,'room4-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room4-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room4-img" src="Assets/13.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room4',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room4',1)">›</button>
+                    <div class="modal-image-caption">King Business Suite – Non Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>King Business Suite – Non Smoking (BNK)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 3 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛏️</div><span>1 King Bed</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>350 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚭</div><span>Non-Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Air conditioning</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Ergonomic desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>32-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📡</div><span>Cable/satellite</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🌟</div><span>Premium channels</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🏢</div><span>Business center access</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 5 Modal -->
+    <div class="modal-overlay" id="room5-modal" onclick="overlayClose(event,'room5-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room5-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room5-img" src="Assets/10.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room5',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room5',1)">›</button>
+                    <div class="modal-image-caption">Two Queen Beds – Non Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>Two Queen Beds – Non Smoking (NQQ)</h3>
+                <p class="modal-bed-info">2 Queen Beds • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 4 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛏️</div><span>2 Queen Beds</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>380 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚭</div><span>Non-Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Air conditioning</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Work desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>32-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📡</div><span>Cable/satellite</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🌟</div><span>Premium channels</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 6 Modal -->
+    <div class="modal-overlay" id="room6-modal" onclick="overlayClose(event,'room6-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room6-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room6-img" src="Assets/1.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room6',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room6',1)">›</button>
+                    <div class="modal-image-caption">King Business Suite – Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>King Business Suite – Smoking (BK)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 3 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛏️</div><span>1 King Bed</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>320 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚬</div><span>Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Tea/Coffee machine</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🛏️</div><span>Bed linen</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Mini fridge</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">👗</div><span>Cloth hangers</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>42-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚬</div><span>Smoking allowed</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🏢</div><span>Business center access</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 7 Modal -->
+    <div class="modal-overlay" id="room7-modal" onclick="overlayClose(event,'room7-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room7-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room7-img" src="Assets/13.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room7',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room7',1)">›</button>
+                    <div class="modal-image-caption">Two Queen Beds – Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>Two Queen Beds – Smoking (QQ)</h3>
+                <p class="modal-bed-info">2 Queen Beds • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 4 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛏️</div><span>2 Queen Beds</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>280 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚬</div><span>Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Air conditioning</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Work desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>32-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📡</div><span>Cable channels</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚬</div><span>Smoking allowed</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🧹</div><span>Daily housekeeping</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 8 Modal -->
+    <div class="modal-overlay" id="room8-modal" onclick="overlayClose(event,'room8-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room8-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room8-img" src="Assets/1.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room8',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room8',1)">›</button>
+                    <div class="modal-image-caption">Handicap Two Queen Beds – Non Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>Handicap Two Queen Beds – Non Smoking (HNQQ)</h3>
+                <p class="modal-bed-info">2 Queen Beds • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 4 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">♿</div><span>Accessible</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>320 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚭</div><span>Non-Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">♿</div><span>Wheelchair accessible</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚿</div><span>Roll-in shower</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🤲</div><span>Grab bars</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚪</div><span>Wide doorways</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Mini fridge</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>42-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Executive desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 9 Modal -->
+    <div class="modal-overlay" id="room9-modal" onclick="overlayClose(event,'room9-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room9-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room9-img" src="Assets/18.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room9',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room9',1)">›</button>
+                    <div class="modal-image-caption">King Jacuzzi – Non Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>King Jacuzzi – Non Smoking (SNK)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 2 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛁</div><span>Jacuzzi</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>250 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚭</div><span>Non-Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🛁</div><span>Private Jacuzzi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Air conditioning</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">☕</div><span>Coffee maker</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🖥️</div><span>Small desk</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>28-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📡</div><span>Basic cable</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🧹</div><span>Daily housekeeping</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room 10 Modal -->
+    <div class="modal-overlay" id="room10-modal" onclick="overlayClose(event,'room10-modal')">
+        <div class="room-modal">
+            <button class="modal-close-btn" onclick="closeModal('room10-modal')">✕</button>
+            <div class="modal-header">
+                <h2>Room Details</h2>
+            </div>
+            <div class="modal-image-section">
+                <div class="modal-main-image">
+                    <img id="room10-img" src="Assets/11.jpeg" alt="Room" />
+                    <button class="modal-nav-btn modal-prev" onclick="modalSlide('room10',-1)">‹</button>
+                    <button class="modal-nav-btn modal-next" onclick="modalSlide('room10',1)">›</button>
+                    <div class="modal-image-caption">King Jacuzzi – Smoking | Sleep Inn, Searcy</div>
+                </div>
+            </div>
+            <div class="modal-info-section">
+                <h3>King Jacuzzi – Smoking (SK)</h3>
+                <p class="modal-bed-info">1 King Bed • 1 Room</p>
+                <div class="modal-features">
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">👥</div><span>Max 2 Guests</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🛁</div><span>Jacuzzi</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">📐</div><span>320 sq ft</span>
+                    </div>
+                    <div class="modal-feature-item">
+                        <div class="modal-feature-icon">🚬</div><span>Smoking</span>
+                    </div>
+                </div>
+                <div class="modal-amenities-section">
+                    <h4>Amenities</h4>
+                    <h5>Room</h5>
+                    <div class="modal-amenities-grid">
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🛁</div><span>Private Jacuzzi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🛏️</div><span>Premium bedding</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">❄️</div><span>Mini fridge</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🚬</div><span>Smoking allowed</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🧴</div><span>Luxury toiletries</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📺</div><span>42-inch TV</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🌟</div><span>Premium channels</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">📶</div><span>Free WiFi</span>
+                        </div>
+                        <div class="modal-amenity-item">
+                            <div class="modal-amenity-icon">🔊</div><span>Bluetooth speaker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-pricing">
+                    <button class="modal-book-btn"
+                        onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780','_blank')">Book
+                        Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /* ── Image slider data ── */
+        const roomImages = {
+            room1: ['Assets/1.jpeg', 'Assets/13.jpeg', 'Assets/11.jpeg', 'Assets/14.jpeg'],
+            room2: ['Assets/13.jpeg', 'Assets/aminities4.jpeg', 'Assets/11.jpeg', 'Assets/1.jpeg'],
+            room3: ['Assets/11.jpeg', 'Assets/14.jpeg', 'Assets/1.jpeg', 'Assets/11.jpeg'],
+            room4: ['Assets/13.jpeg', 'Assets/16.jpeg', 'Assets/1.jpeg', 'Assets/18.jpeg'],
+            room5: ['Assets/10.jpeg', 'Assets/13.jpeg', 'Assets/12.jpeg', 'Assets/33.jpeg'],
+            room6: ['Assets/1.jpeg', 'Assets/13.jpeg', 'Assets/11.jpeg', 'Assets/14.jpeg'],
+            room7: ['Assets/13.jpeg', 'Assets/aminities4.jpeg', 'Assets/11.jpeg', 'Assets/1.jpeg'],
+            room8: ['Assets/1.jpeg', 'Assets/11.jpeg', 'Assets/14.jpeg', 'Assets/18.jpeg'],
+            room9: ['Assets/18.jpeg', 'Assets/14.jpeg', 'Assets/1.jpeg', 'Assets/20.jpeg'],
+            room10: ['Assets/11.jpeg', 'Assets/29.jpeg', 'Assets/20.jpeg', 'Assets/1.jpeg']
+        };
+
+        const currentIdx = { room1: 0, room2: 0, room3: 0, room4: 0, room5: 0, room6: 0, room7: 0, room8: 0, room9: 0, room10: 0 };
+
+        function modalSlide(roomId, dir) {
+            const imgs = roomImages[roomId];
+            currentIdx[roomId] = (currentIdx[roomId] + dir + imgs.length) % imgs.length;
+            const el = document.getElementById(roomId + '-img');
+            el.style.opacity = '0';
+            setTimeout(() => { el.src = imgs[currentIdx[roomId]]; el.style.opacity = '1'; }, 150);
+        }
+
+        /* ── Filter ── */
+        function filterRooms(type, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.room-card').forEach(card => {
+                card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+            });
+        }
+
+        /* ── Modals ── */
+        function openRoomModal(id) {
+            document.getElementById(id).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function overlayClose(e, id) {
+            if (e.target === document.getElementById(id)) closeModal(id);
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
+                document.body.style.overflow = '';
+            }
+        });
+
+        /* ── Entrance animation ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.room-card').forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, i * 80);
+            });
+        });
+    </script>
+</body>
+
+</html>

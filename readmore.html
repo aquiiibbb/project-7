@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About The Hotel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 5px;
+        }
+
+        .hotel-info-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hotel-info-header-section {
+            background: #bbe37e;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .info-header-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .info-main-title {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+            padding-right: 35px;
+        }
+
+        .info-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 26px;
+            height: 26px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .info-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .hotel-info-content-area {
+            padding: 25px;
+        }
+
+        .hotel-info-description {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #4b5563;
+            margin-bottom: 15px;
+        }
+
+        .hotel-highlights-section {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .highlights-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .hotel-highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .highlight-check-mark {
+            width: 18px;
+            height: 18px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .highlight-description {
+            font-size: 13px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .hotel-booking-btn {
+            background: #7ba043;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            float: right;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(187, 227, 126, 0.3);
+        }
+
+        .hotel-booking-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(187, 227, 126, 0.4);
+        }
+
+        .clear-float {
+            clear: both;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 3px;
+            }
+
+            .hotel-info-wrapper {
+                max-width: 100%;
+            }
+
+            .hotel-info-header-section {
+                padding: 15px 12px;
+            }
+
+            .info-header-subtitle {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .info-main-title {
+                font-size: 18px;
+                padding-right: 30px;
+                line-height: 1.3;
+            }
+
+            .info-close-btn {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+                top: 12px;
+                right: 12px;
+            }
+
+            .hotel-info-content-area {
+                padding: 18px 15px;
+            }
+
+            .hotel-info-description {
+                font-size: 12px;
+                line-height: 1.4;
+                margin-bottom: 12px;
+            }
+
+            .hotel-highlights-section {
+                padding: 15px 12px;
+                margin-top: 15px;
+            }
+
+            .highlights-title {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .hotel-highlights-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .highlight-item {
+                padding: 6px 0;
+                gap: 8px;
+            }
+
+            .highlight-check-mark {
+                width: 16px;
+                height: 16px;
+                font-size: 10px;
+            }
+
+            .highlight-description {
+                font-size: 12px;
+            }
+
+            .hotel-booking-btn {
+                width: 100%;
+                float: none;
+                margin-top: 15px;
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+
+        /* Small Mobile Styles */
+        @media (max-width: 480px) {
+            body {
+                padding: 2px;
+            }
+
+            .hotel-info-wrapper {
+                border-radius: 6px;
+            }
+
+            .hotel-info-header-section {
+                padding: 12px 10px;
+            }
+
+            .info-header-subtitle {
+                font-size: 11px;
+                margin-bottom: 5px;
+            }
+
+            .info-main-title {
+                font-size: 16px;
+                padding-right: 28px;
+            }
+
+            .info-close-btn {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .hotel-info-content-area {
+                padding: 15px 12px;
+            }
+
+            .hotel-info-description {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+
+            .hotel-highlights-section {
+                padding: 12px 10px;
+                margin-top: 12px;
+                border-radius: 6px;
+            }
+
+            .highlights-title {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .highlight-item {
+                padding: 5px 0;
+                gap: 6px;
+            }
+
+            .highlight-check-mark {
+                width: 14px;
+                height: 14px;
+                font-size: 9px;
+            }
+
+            .highlight-description {
+                font-size: 11px;
+            }
+
+            .hotel-booking-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+                margin-top: 12px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hotel-info-header-section {
+                padding: 12px 15px;
+            }
+
+            .info-main-title {
+                font-size: 16px;
+            }
+
+            .hotel-highlights-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .info-close-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .hotel-booking-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .highlight-item {
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hotel-info-wrapper">
+        <div class="hotel-info-header-section">
+            <div class="info-header-subtitle">About the hotel</div>
+            <h1 class="info-main-title">Book our affordable hotel in Searcy, AR</h1>
+            <button class="info-close-btn" onclick="closeHotelInfoModal()">×</button>
+        </div>
+
+        <div class="hotel-info-content-area">
+            <p class="hotel-info-description">
+                The Magnolia hotel offers an affordable stay in a prime location off I-57 at Exit 46. As our guest,
+                you'll enjoy quick access to the shopping center next door, home to top coffee shops, restaurant chains
+                and retail stores. Area attractions include Harding University, Arkansas State University, 18-hole golf
+                courses, Searcy's Sports Complex, Berryhill Park and Unity Health Hospital—all less than a mile away.
+            </p>
+
+            <p class="hotel-info-description">
+                We're proud to offer enjoyable convenience and simplicity at our hotel. Stay connected with free WiFi
+                throughout the property, start your morning with free coffee, and go for a swim in our seasonal outdoor
+                pool. Business travelers appreciate our business center with fax and copy machines.
+            </p>
+
+            <p class="hotel-info-description">
+                Each guest room comes equipped with a refrigerator, microwave, coffee maker, iron and ironing board,
+                hair dryer and an HDTV with 160 channels (including premium movie channels). With a location just off
+                the highway, the Econo Lodge Inn & Suites is easy to find, and our affordable rates are easy on your
+                wallet.
+            </p>
+
+            <div class="hotel-highlights-section">
+                <h2 class="highlights-title">Things You'll Love</h2>
+
+                <div class="hotel-highlights-grid">
+                    <div class="highlight-item">
+                        <div class="highlight-check-mark">✓</div>
+                        <div class="highlight-description">Conveniently located off I-57</div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <div class="highlight-check-mark">✓</div>
+                        <div class="highlight-description">Truck and bus parking</div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <div class="highlight-check-mark">✓</div>
+                        <div class="highlight-description">Minutes from Harding University</div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <div class="highlight-check-mark">✓</div>
+                        <div class="highlight-description">Seasonal outdoor pool</div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <div class="highlight-check-mark">✓</div>
+                        <div class="highlight-description">Near Berryhill Park</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="hotel-booking-btn" onclick="initiateHotelBooking()">Book Now</button>
+            <div class="clear-float"></div>
+        </div>
+    </div>
+
+    <script>
+        function closeHotelInfoModal() {
+            console.log('Hotel info modal closed');
+            // Hide the container with fade effect
+            const container = document.querySelector('.hotel-info-wrapper');
+            container.style.opacity = '0';
+            container.style.transform = 'scale(0.95)';
+            container.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 300);
+        }
+
+        function initiateHotelBooking() {
+            alert('Redirecting to booking page...');
+            console.log('Hotel booking initiated from info modal');
+            // Add your booking logic here
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeHotelInfoModal();
+            }
+        });
+
+        // Smooth scroll for better UX
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.querySelector('.hotel-info-wrapper');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                container.style.transition = 'all 0.4s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Prevent zoom on double tap for iOS
+        let lastInfoTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastInfoTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastInfoTouchEnd = now;
+        }, false);
+        // Close modal on overlay click
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id === 'readMoreModal') {
+                closeReadMoreModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeReadMoreModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

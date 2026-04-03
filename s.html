@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hampton Inn Hotel Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .hampton-modal-container {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .hampton-modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 900px;
+        }
+
+        .hampton-modal-left {
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .hampton-modal-right {
+            padding: 18px;
+            overflow-y: auto;
+        }
+
+        /* Left Side */
+        .hampton-image-container {
+            position: relative;
+            height: 280px;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .hampton-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .hampton-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 5;
+        }
+
+        .hampton-nav-arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .hampton-nav-left {
+            left: 12px;
+        }
+
+        .hampton-nav-right {
+            right: 12px;
+        }
+
+        .hampton-image-counter {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .hampton-hotel-info {
+            padding: 18px;
+        }
+
+        .hampton-hotel-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 10px;
+            line-height: 1.2;
+        }
+
+        .hampton-renovated-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hampton-contact-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .hampton-contact-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .hampton-contact-links a:hover {
+            background: #f3f4f6;
+            border-color: #2563eb;
+        }
+
+        .hampton-description h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 10px;
+        }
+
+        .hampton-description p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #6b7280;
+            margin: 0 0 10px;
+        }
+
+        .hampton-description a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+
+        /* Right Side */
+        .hampton-section-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 16px;
+        }
+
+        .hampton-amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .hampton-amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s ease;
+        }
+
+        .hampton-amenity-item:hover {
+            background: #f3f4f6;
+        }
+
+        .hampton-amenity-icon {
+            font-size: 16px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .hampton-amenity-item span {
+            font-size: 11px;
+            color: #374151;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .hampton-section {
+            margin-bottom: 24px;
+        }
+
+        .hampton-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 12px;
+        }
+
+        .hampton-info-table {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .hampton-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .hampton-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .hampton-info-label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 12px;
+        }
+
+        .hampton-info-value {
+            color: #6b7280;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        /* Tabs */
+        .hampton-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .hampton-tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .hampton-tab-btn.hampton-tab-active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        .hampton-tab-content {
+            display: none;
+        }
+
+        .hampton-tab-content.hampton-tab-show {
+            display: block;
+        }
+
+        .hampton-location-list {
+            background: #f8f9fa;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .hampton-location-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 12px;
+        }
+
+        .hampton-location-item:last-child {
+            border-bottom: none;
+        }
+
+        .hampton-location-item span:first-child {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .hampton-location-item span:last-child {
+            color: #6b7280;
+        }
+
+        /* Accessible Features */
+        .hampton-accessible-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+
+        .hampton-accessible-item {
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #374151;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Scrollbar */
+        .hampton-modal-right::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .hampton-modal-right::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .hampton-modal-right::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hampton-modal-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hampton-modal-left {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .hampton-modal-right {
+                padding: 12px;
+            }
+
+            .hampton-image-container {
+                height: 220px;
+            }
+
+            .hampton-hotel-info {
+                padding: 12px;
+            }
+
+            .hampton-amenities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hampton-contact-links {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .hampton-tabs {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .hampton-tab-btn {
+                text-align: left;
+                border-bottom: 1px solid #e5e7eb;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .hampton-hotel-title {
+                font-size: 18px;
+            }
+
+            .hampton-section-header h2 {
+                font-size: 16px;
+            }
+
+            .hampton-amenity-item {
+                padding: 6px 8px;
+            }
+
+            .hampton-amenity-item span {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hampton-modal-container">
+        <div class="hampton-modal-content">
+            <!-- Left Side -->
+            <div class="hampton-modal-left">
+                <div class="hampton-image-container">
+                    <img src="Assets/3.jpeg" alt="Hotel Exterior" class="hampton-main-image" />
+                    <button class="hampton-nav-arrow hampton-nav-left" onclick="previousImage()">‹</button>
+                    <button class="hampton-nav-arrow hampton-nav-right" onclick="nextImage()">›</button>
+                    <div class="hampton-image-counter">1 / 8</div>
+                </div>
+
+                <div class="hampton-hotel-info">
+                    <h2 class="hampton-hotel-title">The Magnolia Hotel - Searcy</h2>
+                    <div class="hampton-renovated-badge">Recently renovated</div>
+
+                    <div class="hampton-contact-links">
+                        <a href="https://maps.google.com/?q=120+North+Rand+Drive,+Searcy,+AR,+72143,+US" target="_blank">Directions</a>
+                        <a href="" target="_blank">Visit website</a>
+                        <a href="tel:+501279-1200">📞 (501) 279-1200</a>
+                    </div>
+
+                    <div class="hampton-description">
+                        <h3>Description</h3>
+                        <p>
+                            We're easy to get to from US-64/67, and it's a quick trip to Harding University, 
+                            ASU-Searcy, and the White County Fair Grounds two miles away. It takes less than 
+                            10 minutes to reach distribution centers for Sam's Club and Walmart. Enjoy free 
+                            hot breakfast each morning and take a refreshing dip in our indoor pool. Stay 
+                            connected with free WiFi throughout your stay.
+                        </p>
+                        <a href="javascript:void(0)" onclick="toggleDescription()">Read less</a>
+                    </div>
+
+                  
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="hampton-modal-right">
+                <div class="hampton-section-header">
+                    <h2>Amenities</h2>
+                </div>
+
+                <div class="hampton-amenities-grid">
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🍳</div>
+                        <span>Free hot breakfast</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🅿️</div>
+                        <span>Free parking</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">📶</div>
+                        <span>Free WiFi</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🚭</div>
+                        <span>Non-smoking rooms</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🔑</div>
+                        <span>Digital Key</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">📺</div>
+                        <span>Streaming entertainment</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🏊</div>
+                        <span>Indoor pool</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🏋️</div>
+                        <span>Fitness center</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🧳</div>
+                        <span>Business center</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🐕</div>
+                        <span>Pet-friendly</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">❄️</div>
+                        <span>Air conditioning</span>
+                    </div>
+                    <div class="hampton-amenity-item">
+                        <div class="hampton-amenity-icon">🧊</div>
+                        <span>Ice machine</span>
+                    </div>
+                </div>
+
+                <div class="hampton-section">
+                    <h3>Overview</h3>
+                    <div class="hampton-info-table">
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Check-in</span>
+                            <span class="hampton-info-value">3:00 PM</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Check-out</span>
+                            <span class="hampton-info-value">11:00 AM</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Currency</span>
+                            <span class="hampton-info-value">US Dollar</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Smoking</span>
+                            <span class="hampton-info-value">Designated area only</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Parking</span>
+                            <span class="hampton-info-value">Self parking - Complimentary</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Pets</span>
+                            <span class="hampton-info-value">Allowed, 75 lbs max, $75 fee</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Languages</span>
+                            <span class="hampton-info-value">English, Spanish</span>
+                        </div>
+                        <div class="hampton-info-row">
+                            <span class="hampton-info-label">Property type</span>
+                            <span class="hampton-info-value">Hotel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hampton-section">
+                    <h3>Location and transportation</h3>
+                    <div class="hampton-tabs">
+                        <button class="hampton-tab-btn hampton-tab-active" onclick="switchTab('nearby')">
+                            What's nearby
+                        </button>
+                        <button class="hampton-tab-btn" onclick="switchTab('airport')">
+                            Airport info
+                        </button>
+                    </div>
+
+                    <div class="hampton-tab-content hampton-tab-show" id="nearby-content">
+                        <div class="hampton-location-list">
+                            <div class="hampton-location-item">
+                                <span>Searcy Cinema 8</span>
+                                <span>0.50 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Rialto Historical Theater</span>
+                                <span>2.60 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Super Bowl Bowling Alley</span>
+                                <span>3.50 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Harding University</span>
+                                <span>3.90 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Thrills on Wheels Skate Center</span>
+                                <span>4.10 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Little Red River</span>
+                                <span>12 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Walmart Supercenter</span>
+                                <span>1.2 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>McDonald's</span>
+                                <span>0.8 miles</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hampton-tab-content" id="airport-content">
+                        <div class="hampton-location-list">
+                            <div class="hampton-location-item">
+                                <span>Bill & Hillary Clinton National Airport</span>
+                                <span>52 miles</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Airport shuttle</span>
+                                <span>Not available</span>
+                            </div>
+                            <div class="hampton-location-item">
+                                <span>Estimated drive time</span>
+                                <span>1 hour 15 minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hampton-section">
+                    <h3>Accessible Features</h3>
+                    <div class="hampton-accessible-list">
+                        <div class="hampton-accessible-item">✓ Accessible business center</div>
+                        <div class="hampton-accessible-item">✓ Accessible exercise facility</div>
+                        <div class="hampton-accessible-item">✓ Accessible guest rooms with mobility features</div>
+                        <div class="hampton-accessible-item">✓ Accessible parking spaces</div>
+                        <div class="hampton-accessible-item">✓ Accessible public entrance</div>
+                        <div class="hampton-accessible-item">✓ Accessible registration desk</div>
+                        <div class="hampton-accessible-item">✓ Accessible swimming pool</div>
+                        <div class="hampton-accessible-item">✓ Bathroom doors at least 32 inches wide</div>
+                        <div class="hampton-accessible-item">✓ Bedroom doors at least 32 inches wide</div>
+                        <div class="hampton-accessible-item">✓ Braille room numbers</div>
+                        <div class="hampton-accessible-item">✓ Visual alarms for hearing impaired</div>
+                        <div class="hampton-accessible-item">✓ TTY for guest use</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hamptonImages = [
+            {
+                src: "Assets/3.jpeg",
+                alt: "Hotel Exterior"
+            },
+            {
+                src: "Assets/16.jpeg",
+                alt: "Hotel Room"
+            },
+            
+            {
+                src: "Assets/30.jpeg",
+                alt: "Indoor Pool"
+            },
+            {
+                src: "Assets/31.jpeg",
+                alt: "Fitness Center"
+            },
+            {
+                src: "Assets/22.jpeg",
+                alt: "Breakfast Area"
+            },
+            {
+                src: "Assets/6.jpeg",
+                alt: "Business Center"
+            },
+            {
+                src: "Assets/20.jpeg",
+                alt: "Hotel Bathroom"
+            }
+        ];
+
+        let hamptonCurrentImage = 0;
+
+        function nextImage() {
+            hamptonCurrentImage = (hamptonCurrentImage + 1) % hamptonImages.length;
+            updateHamptonImage();
+        }
+
+        function previousImage() {
+            hamptonCurrentImage = (hamptonCurrentImage - 1 + hamptonImages.length) % hamptonImages.length;
+            updateHamptonImage();
+        }
+
+        function updateHamptonImage() {
+            const img = document.querySelector('.hampton-main-image');
+            const counter = document.querySelector('.hampton-image-counter');
+            
+            if (img && counter) {
+                img.src = hamptonImages[hamptonCurrentImage].src;
+                img.alt = hamptonImages[hamptonCurrentImage].alt;
+                counter.textContent = `${hamptonCurrentImage + 1} / ${hamptonImages.length}`;
+            }
+        }
+
+        function switchTab(tabName) {
+            // Remove active classes
+            document.querySelectorAll('.hampton-tab-btn').forEach(btn => {
+                btn.classList.remove('hampton-tab-active');
+            });
+            
+            document.querySelectorAll('.hampton-tab-content').forEach(content => {
+                content.classList.remove('hampton-tab-show');
+            });
+            
+            // Add active classes
+            const activeBtn = document.querySelector(`[onclick="switchTab('${tabName}')"]`);
+            const activeContent = document.getElementById(`${tabName}-content`);
+            
+            if (activeBtn) activeBtn.classList.add('hampton-tab-active');
+            if (activeContent) activeContent.classList.add('hampton-tab-show');
+        }
+
+        function toggleDescription() {
+            const description = document.querySelector('.hampton-description p');
+            const link = document.querySelector('.hampton-description a');
+            
+            if (description && link) {
+                if (description.style.maxHeight) {
+                    description.style.maxHeight = null;
+                    link.textContent = 'Read less';
+                } else {
+                    description.style.maxHeight = '50px';
+                    link.textContent = 'Read more';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

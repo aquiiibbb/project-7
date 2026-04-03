@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Sleep Inn & Suites Searcy</title>
+  <link rel="stylesheet" href="gallery.css" />
+</head>
+
+<body>
+  <div class="gallery-container">
+    <button class="close-button" onclick="window.location.href='index.html'">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="gallery-header">
+      <h1 class="gallery-title">Sleep Inn & Suites Searcy near University</h1>
+      <div class="tab-navigation">
+        <button class="tab-button active" id="tab-photos" onclick="switchTab('photos')">
+          <span>📷</span> Photos
+        </button>
+        <button class="tab-button inactive" id="tab-virtual" onclick="switchTab('virtual')">
+          <span>🏨</span> Virtual tour
+        </button>
+      </div>
+      <div class="category-filters" id="category-filters">
+        <button class="category-button active" onclick="filterCategory('All Photos', this)">All Photos (27)</button>
+        <button class="category-button" onclick="filterCategory('Rooms & Suites', this)">Rooms & Suites (11)</button>
+        <button class="category-button" onclick="filterCategory('Exterior', this)">Exterior (4)</button>
+        <button class="category-button" onclick="filterCategory('Lobby', this)">Lobby (4)</button>
+        <button class="category-button" onclick="filterCategory('Breakfast Area', this)">Breakfast Area (3)</button>
+        <button class="category-button" onclick="filterCategory('Amenities', this)">Amenities (4)</button>
+      </div>
+    </div>
+
+    <div class="main-image-container">
+      <!-- Photos Tab -->
+      <div id="photos-tab">
+        <div class="image-wrapper">
+          <img id="gallery-main-img" src="" alt="" class="main-image" />
+          <button class="nav-arrow prev" onclick="galleryPrev()" aria-label="Previous image">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="nav-arrow next" onclick="galleryNext()" aria-label="Next image">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="image-caption">
+            <p id="gallery-caption"></p>
+          </div>
+          <div class="image-counter" id="gallery-counter"></div>
+        </div>
+        <div class="thumbnail-strip" id="thumbnail-strip"></div>
+      </div>
+
+      <!-- Virtual Tour Tab -->
+      <div id="virtual-tab" style="display:none">
+        <div class="virtual-tour-wrapper">
+          <iframe src="https://www.vpix.net/index.php?tour=459228" class="virtual-tour-iframe" title="Virtual Tour"
+            allowfullscreen frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="gallery.js"></script>
+</body>
+
+</html>
