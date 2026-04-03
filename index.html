@@ -6,14 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Magnolia Hotel - Searcy</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Your CSS -->
+  <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
+
   <!-- ===== HEADER ===== -->
  
 
-<header class="hotel-header">
+  <header class="hotel-header">
   <div class="hotel-header-container">
     <!-- Top Row: Logo, Hotel Info, Hotel Details Button -->
     <div class="hotel-top-row">
@@ -54,7 +59,7 @@
 
     <!-- Bottom Row: Booking Fields + Search Button -->
    
-</header>
+  </header>
 
   <!-- ===== MAIN WRAPPER ===== -->
   <div class="hotel-preview-wrapper">
@@ -105,7 +110,7 @@
     </svg>
     <span class="icon-label">WhatsApp</span>
   </a>
-</div>
+  </div>
     <!-- ===== STICKY NAV ===== -->
     <div class="sticky-nav" id="sticky-nav">
       <div class="sticky-nav-container">
@@ -733,9 +738,9 @@
             </div>
         </div>
     </div>
-</div>
-<!-- ===== ROOM 1 MODAL ===== -->
-<div class="modal-overlay" id="room1-modal" onclick="closeModal('room1-modal')">
+  </div>
+  <!-- ===== ROOM 1 MODAL ===== -->
+  <div class="modal-overlay" id="room1-modal" onclick="closeModal('room1-modal')">
     <div class="room-modal" onclick="event.stopPropagation()">
         <button class="modal-close-btn" onclick="closeModal('room1-modal')">✕</button>
         <div class="modal-header">
@@ -809,10 +814,10 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
 
-<!-- ===== ROOM 2 MODAL ===== -->
-<div class="modal-overlay" id="room2-modal" onclick="closeModal('room2-modal')">
+  <!-- ===== ROOM 2 MODAL ===== -->
+  <div class="modal-overlay" id="room2-modal" onclick="closeModal('room2-modal')">
     <div class="room-modal" onclick="event.stopPropagation()">
         <button class="modal-close-btn" onclick="closeModal('room2-modal')">✕</button>
         <div class="modal-header">
@@ -887,10 +892,10 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
 
-<!-- ===== ROOM 3 MODAL ===== -->
-<div class="modal-overlay" id="room3-modal" onclick="closeModal('room3-modal')">
+  <!-- ===== ROOM 3 MODAL ===== -->
+  <div class="modal-overlay" id="room3-modal" onclick="closeModal('room3-modal')">
     <div class="room-modal" onclick="event.stopPropagation()">
         <button class="modal-close-btn" onclick="closeModal('room3-modal')">✕</button>
         <div class="modal-header">
@@ -965,10 +970,10 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
 
-<!-- ===== AMENITIES MODAL ===== -->
-<div class="modal-overlay" id="amenities-modal" onclick="closeModal('amenities-modal')">
+  <!-- ===== AMENITIES MODAL ===== -->
+  <div class="modal-overlay" id="amenities-modal" onclick="closeModal('amenities-modal')">
     <div class="room-modal" onclick="event.stopPropagation()" style="max-width:600px">
         <button class="modal-close-btn" onclick="closeModal('amenities-modal')">✕</button>
         <div class="modal-header">
@@ -1054,11 +1059,15 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
 
+<!-- Bootstrap JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- Your JS -->
+<script src="js/script.js"></script>
   <script src="script.js"></script>
 </body>
-<footer class="hotel-footer">
+  <footer class="hotel-footer">
   <div class="footer-container">
     <div class="footer-content">
       <!-- Logo & Contact -->
