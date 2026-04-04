@@ -1397,7 +1397,7 @@ body {
   color: #ffffff;
 }
 
-/* ========== GUEST ROOMS ========== */
+/* ============== */
 .guest-rooms-section {
   margin-top: 60px;
 }
@@ -1414,7 +1414,7 @@ body {
 .rooms-title h2 {
   font-size: 28px;
   margin: 10px 0;
-  line-height: 1.3; 
+  line-height: 1.3;
 }
 
 .room-selection-filters {
@@ -1550,11 +1550,9 @@ body {
 }
 
 .feature-row {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
   margin-bottom: 15px;
 }
 
@@ -1562,6 +1560,15 @@ body {
   font-size: 15px;
   color: rgb(65, 62, 62);
   line-height: 1.4;
+  position: relative;
+  padding-left: 15px;
+}
+
+.feature-row span::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: rgb(65, 62, 62);
 }
 
 .room-details-btn {
