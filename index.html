@@ -938,20 +938,28 @@
       const grid = document.getElementById('rooms-grid');
       const modalContainer = document.getElementById('dynamic-modals');
       let currentIndex = 0;
-      let isFirstLoad = 1; // ✅ Pehli baar track karne ke liye
+      let isFirstLoad = true;
+      let activeFilter = 'all';
 
-      function loadRooms() {
-        const batchSize = isFirstLoad ? 1 : 6; // ✅ Pehli baar 3, baad mein 6
-        const nextBatch = ROOMS.slice(currentIndex, currentIndex + batchSize);
+      // ✅ Pehle saare modals ek baar build kar lo
+      ROOMS.forEach(function (room) {
+        modalContainer.insertAdjacentHTML('beforeend', buildRoomModal(room));
+      });
 
-        nextBatch.forEach(function (room) {
+      function clearGrid() {
+        grid.innerHTML = '';
+        currentIndex = 0;
+        isFirstLoad = true;
+      }
+
+      function renderRooms(roomsToShow) {
+        roomsToShow.forEach(function (room) {
           grid.insertAdjacentHTML('beforeend', buildRoomCard(room, true));
-          modalContainer.insertAdjacentHTML('beforeend', buildRoomModal(room));
         });
 
+        // Animate
         const allCards = grid.querySelectorAll('.room-card');
-        const newCards = Array.from(allCards).slice(currentIndex);
-        newCards.forEach(function (card, i) {
+        allCards.forEach(function (card, i) {
           card.style.opacity = '0';
           card.style.transform = 'translateY(20px)';
           setTimeout(function () {
@@ -960,28 +968,60 @@
             card.style.transform = 'translateY(0)';
           }, i * 100);
         });
-
-        currentIndex += batchSize;
-        isFirstLoad = false; // ✅ Pehli load ke baad false
-
-        const moreBtn = document.querySelector('.more-rooms-btn');
-        if (moreBtn) {
-          if (currentIndex >= ROOMS.length) {
-            moreBtn.style.display = 'none';
-          }
-        }
       }
 
-      // ✅ Page load pe sirf 3 rooms
-      loadRooms();
+      function loadAllRooms() {
+        clearGrid();
+        activeFilter = 'all';
 
-      // ✅ More Rooms click pe 6 rooms
+        // ✅ Pehli baar 3 rooms
+        const firstBatch = ROOMS.slice(0, 3);
+        renderRooms(firstBatch);
+        currentIndex = 3;
+        isFirstLoad = false;
+
+        // More Rooms button dikhao
+        const moreBtn = document.querySelector('.more-rooms-btn');
+        if (moreBtn) moreBtn.style.display = 'flex';
+      }
+
+      function loadFilteredRooms(type) {
+        clearGrid();
+        activeFilter = type;
+
+        // ✅ Filter me sirf 1 room dikhao
+        const filtered = ROOMS.filter(r => r.type === type);
+        const oneRoom = filtered.slice(0, 1);
+        renderRooms(oneRoom);
+
+        // More Rooms button hide karo filter me
+        const moreBtn = document.querySelector('.more-rooms-btn');
+        if (moreBtn) moreBtn.style.display = 'none';
+      }
+
+      // ✅ Page load pe 3 rooms
+      loadAllRooms();
+
+      // ✅ More Rooms button - room.html pe redirect
       const moreBtn = document.querySelector('.more-rooms-btn');
       if (moreBtn) {
         moreBtn.onclick = function () {
-          loadRooms();
+          window.location.href = 'room.html';
         };
       }
+
+      // ✅ Filter buttons
+      window.filterRooms = function (type, btn) {
+        // Active class update
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (type === 'all') {
+          loadAllRooms();
+        } else {
+          loadFilteredRooms(type);
+        }
+      };
     });
   </script>
 
