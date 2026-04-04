@@ -937,10 +937,11 @@
     document.addEventListener('DOMContentLoaded', function () {
       const grid = document.getElementById('rooms-grid');
       const modalContainer = document.getElementById('dynamic-modals');
-      let currentIndex = 3;
-      const batchSize = 3;
+      let currentIndex = 0;
+      let isFirstLoad = 1; // ✅ Pehli baar track karne ke liye
 
       function loadRooms() {
+        const batchSize = isFirstLoad ? 1 : 6; // ✅ Pehli baar 3, baad mein 6
         const nextBatch = ROOMS.slice(currentIndex, currentIndex + batchSize);
 
         nextBatch.forEach(function (room) {
@@ -948,7 +949,6 @@
           modalContainer.insertAdjacentHTML('beforeend', buildRoomModal(room));
         });
 
-        // Sirf naye cards animate karo
         const allCards = grid.querySelectorAll('.room-card');
         const newCards = Array.from(allCards).slice(currentIndex);
         newCards.forEach(function (card, i) {
@@ -962,8 +962,8 @@
         });
 
         currentIndex += batchSize;
+        isFirstLoad = false; // ✅ Pehli load ke baad false
 
-        // Agar sab rooms load ho gaye to "More Rooms" button hide karo
         const moreBtn = document.querySelector('.more-rooms-btn');
         if (moreBtn) {
           if (currentIndex >= ROOMS.length) {
@@ -972,10 +972,10 @@
         }
       }
 
-      // Pehli baar 3 rooms load karo
+      // ✅ Page load pe sirf 3 rooms
       loadRooms();
 
-      // "More Rooms" button click pe agle 3 load karo
+      // ✅ More Rooms click pe 6 rooms
       const moreBtn = document.querySelector('.more-rooms-btn');
       if (moreBtn) {
         moreBtn.onclick = function () {
