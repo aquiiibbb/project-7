@@ -1546,7 +1546,7 @@ body {
 }
 
 .room-features {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .feature-row {
@@ -1558,7 +1558,7 @@ body {
 }
 
 .feature-row span {
-  font-size: 13px;
+  font-size: 15px;
   color: rgb(65, 62, 62);
   line-height: 1.4;
 }
