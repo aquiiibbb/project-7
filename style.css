@@ -1555,6 +1555,7 @@ body {
   gap: 15px;
   margin-bottom: 10px;
   flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
 .feature-row span {
