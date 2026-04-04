@@ -5,55 +5,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Magnolia Hotel - Searcy</title>
-
+  
   <link rel="stylesheet" href="style.css" />
-  <script src="roomData.js"></script>
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <!-- Your CSS -->
   <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
+
   <!-- ===== HEADER ===== -->
+ 
+
   <header class="hotel-header">
-    <div class="hotel-header-container">
-      <!-- Top Row: Logo, Hotel Info, Hotel Details Button -->
-      <div class="hotel-top-row">
-        <div class="hotel-logo-section">
-          <div class="hotel-logo">
-            <a href="index.html">
-              <img src="Assets/logo.png" alt="The Magnolia Hotel" />
-            </a>
-          </div>
+  <div class="hotel-header-container">
+    <!-- Top Row: Logo, Hotel Info, Hotel Details Button -->
+    <div class="hotel-top-row">
+      <div class="hotel-logo-section">
+        <div class="hotel-logo">
+          <a href="index.html">
+            <img src="Assets/logo.png" alt="The Magnolia Hotel" />
+          </a>
         </div>
+      </div>
 
-        <div class="hotel-main-info">
-          <h1 class="hotel-title">
-            The Magnolia Hotel - Searcy
-            <span class="hotel-subtitle">"A Better Stay in Searcy."</span>
-          </h1>
-        </div>
+      <div class="hotel-main-info">
+        <h1 class="hotel-title">
+          The Magnolia Hotel - Searcy
+          <span class="hotel-subtitle">“A Better Stay in Searcy.”</span>
+        </h1>
+      <!-- <div class="hotel-rating-location-phone">
+          <div class="hotel-location">📍 120 North Rand Drive, Searcy, AR, 72143, US</div>
+          <div class="hotel-phone">📞 (501) 279-1200</div>
+        </div>-->
+      </div>
 
-        <button class="hotel-details-btn" onclick="showHotelDetails()">
-          Hotel Details
-        </button>
-        <!-- Hotel Details Modal -->
-        <div id="hotelDetailsModal" class="modal" style="display: none;">
-          <div class="modal-content" style="width: 90%; max-width: 800px; height: 80vh;">
-            <div class="modal-header">
-              <h3>Hotel Details</h3>
-              <span class="close" onclick="closeHotelDetailsModal()">&times;</span>
-            </div>
-            <iframe id="hotelDetailsFrame" src="" frameborder="0"
-              style="width: 100%; height: calc(100% - 60px); border: none;"></iframe>
+      <button class="hotel-details-btn" onclick="showHotelDetails()">
+        Hotel Details
+      </button>
+      <!-- Hotel Details Modal -->
+      <div id="hotelDetailsModal" class="modal" style="display: none;">
+        <div class="modal-content" style="width: 90%; max-width: 800px; height: 80vh;">
+          <div class="modal-header">
+            <h3>Hotel Details</h3>
+            <span class="close" onclick="closeHotelDetailsModal()">&times;</span>
           </div>
+          <iframe id="hotelDetailsFrame" src="" frameborder="0"
+            style="width: 100%; height: calc(100% - 60px); border: none;"></iframe>
         </div>
       </div>
     </div>
+
+    <!-- Bottom Row: Booking Fields + Search Button -->
+   
   </header>
 
   <!-- ===== MAIN WRAPPER ===== -->
@@ -75,25 +83,28 @@
       </div>
     </div>
 
-    <div class="social-sidebar">
-      <a href="https://instagram.com/yourhotel" target="_blank" class="social-icon instagram-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg>
-        <span class="icon-label">Instagram</span>
-      </a>
+   <div class="social-sidebar">
+  
+  
+  <a href="https://instagram.com/yourhotel" target="_blank" class="social-icon instagram-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+    <span class="icon-label">Instagram</span>
+  </a>
+  
+  <a href="https://www.facebook.com/themagnoliahotelsearcy?mibextid=wwXIfr&rdid=gOBy48xGCMhmeY43&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BedjWGNve%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="social-icon facebook-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+    <span class="icon-label">Facebook</span>
+  </a>
+  
+ 
 
-      <a href="https://www.facebook.com/themagnoliahotelsearcy?mibextid=wwXIfr&rdid=gOBy48xGCMhmeY43&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BedjWGNve%2F%3Fmibextid%3DwwXIfr#"
-        target="_blank" class="social-icon facebook-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-        <span class="icon-label">Facebook</span>
-      </a>
-    </div>
+  
 
+  </div>
     <!-- ===== STICKY NAV ===== -->
     <div class="sticky-nav" id="sticky-nav">
       <div class="sticky-nav-container">
@@ -114,14 +125,20 @@
         <div class="overview-left">
           <p class="tag">OVERVIEW</p>
           <h2>Book our affordable hotel in Searcy, AR</h2>
-          <p class="desc">The Magnolia Hotel - Searcy offers an affordable stay in a prime location off
+          <p class="desc"> The Magnolia Hotel - Searcy offers an affordable stay in a prime location off
             I-57 at Exit 46. As our guest, you'll enjoy quick access to the shopping center next door, home to top
             coffee shops, restaurant chains and retail stores. Area attractions include Harding University, Arkansas
             State University, 18-hole golf courses, Searcy's Sports Complex, Berryhill Park and Unity Health
             Hospital—all less than a mile away. Or spend some time at the nearby playground, picnic areas and walking
             trails.</p>
-          <button class="read-more-btn" onclick="openReadMoreModal()">Read More</button>
+          <button class="read-more-btn" onclick="openReadMoreModal()">
+            Read More
+          </button>
+
+          <!-- Modal Structure -->
+
         </div>
+        <!-- ===== READ MORE MODAL ===== -->
 
         <div class="overview-right-wrapper">
           <div class="overview-right">
@@ -165,7 +182,9 @@
           <h2>Available Guest Rooms</h2>
         </div>
       </div>
-
+   
+      
+      
       <div class="booking-row">
         <div class="booking-field" onclick="showDatePicker('checkin')">
           <label class="booking-label">Check in</label>
@@ -179,9 +198,11 @@
           <label class="booking-label">Rooms & guests</label>
           <div class="booking-value" id="guest-display">1 room, 1 guest</div>
         </div>
-        <button class="search-btn" onclick="performSearch()">Search</button>
+        <button class="search-btn" onclick="performSearch()">
+          Search
+        </button>
       </div>
-
+      
       <!-- Date Picker Modal -->
       <div id="date-picker-modal" class="booking-modal">
         <div class="booking-modal-content">
@@ -199,7 +220,7 @@
           </div>
         </div>
       </div>
-
+      
       <!-- Guest Selector Modal -->
       <div id="guest-selector-modal" class="booking-modal">
         <div class="booking-modal-content">
@@ -237,20 +258,123 @@
         </div>
       </div>
 
+      
       <div class="room-selection-filters">
         <button class="filter-btn active" onclick="filterRooms('all', this)">All rooms</button>
-        <button class="filter-btn" onclick="filterRooms('1bed', this)">🛏️ 1 Bed</button>
-        <button class="filter-btn" onclick="filterRooms('2bed', this)">🛏️ 2+ Beds</button>
-        <button class="filter-btn" onclick="filterRooms('suite', this)">🏨 Suites</button>
-        <button class="filter-btn" onclick="filterRooms('handicap', this)">♿ Accessible</button>
-        <button class="filter-btn" onclick="filterRooms('jacuzzi', this)">🛁 Jacuzzi</button>
+        <button class="filter-btn" onclick="filterRooms('1bed', this)">🛏️ 1 Bed (2)</button>
+        <button class="filter-btn" onclick="filterRooms('2bed', this)">🛏️ 2+ Beds (1)</button>
       </div>
-
-      <!-- ✅ ROOMS GRID - roomData.js se fill hoga -->
+    
       <div class="rooms-grid" id="rooms-grid">
-        <!-- JS automatically fill karega -->
+        <!-- Room 1 -->
+        <div class="room-card" data-type="1bed">
+          <div class="room-image" onclick="openRoomModal('room1-modal')" style="cursor:pointer">
+            <img src="Assets/1.jpeg"
+              alt="King Beds - Non Smoking (NK)" />
+            <span class="room-count">5</span>
+            <div class="image-overlay"><span class="view-photos">View Details</span></div>
+          </div>
+          <div class="room-details">
+            <h3>King Beds - Non Smoking (NK)</h3>
+            <div class="room-specs">
+              <span class="spec">🛏️ 1 room</span>
+              <span class="spec">👥 No Smoking</span>
+              <span class="spec">📐 300 sq ft</span>
+            </div>
+            <div class="room-features">
+              <div class="feature-row">
+                <span>• Microwave</span>
+                <span>• Flat TV</span>
+                <span>• Hair Dryer</span>
+                <span>• Iron/Board</span>
+              </div>
+              <div class="feature-row">
+                <span>• Coffee maker with coffee</span>
+                <span>• Desk with ergonomic chair</span>
+                <span>• Free WiFi</span>
+              </div>
+            </div>
+            <button class="room-details-btn" onclick="openRoomModal('room1-modal')">Room Details</button>
+          </div>
+          <div class="room-pricing">
+            <button class="book-room-btn"
+              onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">Book Now</button>
+          </div>
+        </div>
+    
+        <!-- Room 2 -->
+        <div class="room-card" data-type="2bed">
+          <div class="room-image" onclick="openRoomModal('room2-modal')" style="cursor:pointer">
+            <img src="Assets/13.jpeg"
+              alt="King Beds- Smoking (K)" />
+            <span class="room-count">3</span>
+            <div class="image-overlay"><span class="view-photos">View Details</span></div>
+          </div>
+          <div class="room-details">
+            <h3>King Beds- Smoking (K)</h3>
+            <div class="room-specs">
+              <span class="spec">🛏️ 2 Queen Beds</span>
+              <span class="spec">👥 No Smoking</span>
+              <span class="spec">📐 300 sq ft</span>
+            </div>
+            <div class="room-features">
+              <div class="feature-row">
+                <span>• Microwave</span>
+                <span>• Flat TV</span>
+                <span>• Hair Dryer</span>
+                <span>• Iron/Board</span>
+              </div>
+              <div class="feature-row">
+                <span>• Coffee maker with coffee</span>
+                <span>• Desk with ergonomic chair</span>
+                <span>• Free WiFi</span>
+              </div>
+            </div>
+            <button class="room-details-btn" onclick="openRoomModal('room2-modal')">Room Details</button>
+          </div>
+          <div class="room-pricing">
+            <button class="book-room-btn"
+              onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">Book Now</button>
+          </div>
+        </div>
+    
+        <!-- Room 3 -->
+        <div class="room-card" data-type="1bed">
+          <div class="room-image" onclick="openRoomModal('room3-modal')" style="cursor:pointer">
+            <img src="Assets/11.jpeg"
+              alt="Handicap King Room - Non Smoking (HNK)" />
+            <span class="room-count">2</span>
+            <div class="image-overlay"><span class="view-photos">View Details</span></div>
+          </div>
+          <div class="room-details">
+            <h3>Handicap King Room - Non Smoking (HNK)</h3>
+            <div class="room-specs">
+              <span class="spec">🛏️ 1 King Bed</span>
+              <span class="spec">👥 No Smoking</span>
+              <span class="spec">📐 350 sq ft</span>
+            </div>
+            <div class="room-features">
+              <div class="feature-row">
+                <span>• 1 king bed with sofa bed</span>
+                <span>• Flat TV</span>
+                <span>• Hair Dryer</span>
+                <span>• Iron/Board</span>
+              </div>
+              <div class="feature-row">
+                <span>• Mini refrigerator</span>
+                <span>• Desk with ergonomic chair</span>
+                <span>• Free WiFi</span>
+              </div>
+            </div>
+            <button class="room-details-btn" onclick="openRoomModal('room3-modal')">Room Details</button>
+          </div>
+          <div class="room-pricing">
+            <button class="book-room-btn"
+              onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">Book Now</button>
+          </div>
+        </div>
       </div>
-
+    
       <!-- More Rooms Button -->
       <div class="more-rooms-container">
         <button class="more-rooms-btn" onclick="window.location.href='room.html'">
@@ -271,13 +395,14 @@
           <div class="amenity-item"><span class="amenity-icon">📶</span><span>Free WiFi</span></div>
           <div class="amenity-item"><span class="amenity-icon">🍳</span><span>Free Hot Breakfast</span></div>
           <div class="amenity-item"><span class="amenity-icon">🥤</span><span>Vending Machines*</span></div>
-          <div class="amenity-item"><span class="amenity-icon">💨</span><span>Hair Dryer</span></div>
+          <div class="amenity-item"><span class="amenity-icon">💨</span><span>Hair Drayer</span></div>
           <div class="amenity-item"><span class="amenity-icon">🚛</span><span>Truck Parking</span></div>
           <div class="amenity-item"><span class="amenity-icon">🏨</span><span>Exterior Corridors</span></div>
           <div class="amenity-item"><span class="amenity-icon">🩺</span><span>First-aid staff/24hr</span></div>
           <div class="amenity-item"><span class="amenity-icon">♿</span><span>Free Accessible Parking</span></div>
           <div class="amenity-item"><span class="amenity-icon">🏛️</span><span>Government Travelers: FEMA
-              Approved</span></div>
+              Approved</span>
+          </div>
         </div>
         <button class="amenities-btn-dark" onclick="openAmenitiesModal()">View all amenities</button>
         <p class="note">*May require an additional cost</p>
@@ -309,10 +434,11 @@
       <div class="nearby-left">
         <h4>Find us</h4>
         <p><b>120 North Rand Drive, Searcy, AR, 72143, US</b></p>
-        <p>The Magnolia hotel & Suites Searcy offers plenty of opportunities to explore the area. Conveniently located
-          off I-57, our hotel is just minutes away from the Town & Country Plaza and a short drive from the Walmart
+        <p> The Magnolia hotel & Suites Searcy offers plenty of opportunities to explore the area. Conveniently located
+          off
+          I-57, our hotel is just minutes away from the Town & Country Plaza and a short drive from the Walmart
           Distribution Center. Check out the nearby Searcy Sports Complex or explore the pavilion, picnic areas and
-          walking trail at Berryhill Park. Students and their families appreciate our hotel's close proximity to both
+          walking trail at Berryhill Park. Students and their families appreciate our hotel’s close proximity to both
           Harding University and Arkansas State University Searcy Campus. Our hotel is also close to Unity Health, the
           BHP Billiton Searcy Field Office and Haliburton Energy Services.</p>
       </div>
@@ -389,6 +515,7 @@
             <p>Anyone aged 16 and under, at time of booking, stay for free</p>
           </div>
         </div>
+        
         <div class="info-item">
           <div class="info-icon">🐾</div>
           <div>
@@ -530,66 +657,77 @@
         </div>
       </div>
     </div>
-
     <!-- ===== TERMS & CONDITIONS ===== -->
     <div class="terms-section" id="terms">
       <div class="terms-inner">
         <p class="terms-tag"></p>
         <h2 class="terms-heading">Hotel Policies</h2>
         <p class="terms-sub">Please review our policies before booking. For questions, contact us at (501) 279-1200.</p>
+    
         <div class="policy-grid">
           <div class="policy-card">
             <div class="policy-card-title"><span class="policy-icon">🕐</span> Check-in &amp; Check-out</div>
             <div class="policy-row"><span class="policy-key">Check-in</span><span class="policy-val">3:00 PM</span>
             </div>
-            <div class="policy-row"><span class="policy-key">Check-out</span><span class="policy-val">11:00 AM</span>
-            </div>
+            <div class="policy-row"><span class="policy-key">Check-out</span><span class="policy-val">11:00 AM</span></div>
             <div class="policy-row"><span class="policy-key">Early check-in</span><span class="policy-val">Subject to
                 availability</span></div>
+            
           </div>
+    
           <div class="policy-card">
             <div class="policy-card-title"><span class="policy-icon">❌</span> Cancellation Policy</div>
-            <div class="policy-row"><span class="policy-key">Free cancellation</span><span class="policy-val">Up to 24
-                hrs before arrival</span></div>
-            <div class="policy-row"><span class="policy-key">No-show</span><span class="policy-val">100% charge</span>
-            </div>
-            <div class="policy-row"><span class="policy-key">Group bookings</span><span class="policy-val">72 hrs
-                advance notice</span></div>
+            <div class="policy-row"><span class="policy-key">Free cancellation</span><span class="policy-val">Up to 24 hrs
+                before arrival</span></div>
+            <div class="policy-row"><span class="policy-key">No-show</span><span class="policy-val">100% charge</span></div>
+            <div class="policy-row"><span class="policy-key">Group bookings</span><span class="policy-val">72 hrs advance
+                notice</span></div>
           </div>
+    
           <div class="policy-card">
             <div class="policy-card-title"><span class="policy-icon">💳</span> Payment Terms</div>
             <div class="policy-row"><span class="policy-key">Booking</span><span class="policy-val">Credit card
                 required</span></div>
             <div class="policy-row"><span class="policy-key">Accepted cards</span><span class="policy-val">Visa, MC,
                 Amex, Discover</span></div>
-            <div class="policy-row"><span class="policy-key">Incidentals</span><span class="policy-val">Additional
-                charges apply</span></div>
+           
+            <div class="policy-row"><span class="policy-key">Incidentals</span><span class="policy-val">Additional charges
+                apply</span></div>
           </div>
+    
           <div class="policy-card">
             <div class="policy-card-title"><span class="policy-icon">👥</span> Guest Policies</div>
             <div class="policy-row"><span class="policy-key">Age requirement</span><span class="policy-val">16+ to
                 check-in</span></div>
-            <div class="policy-row"><span class="policy-key">ID required</span><span class="policy-val">Valid
-                govt-issued photo ID</span></div>
+            <div class="policy-row"><span class="policy-key">ID required</span><span class="policy-val">Valid govt-issued
+                photo ID</span></div>
             <div class="policy-row"><span class="policy-key">Max occupancy</span><span class="policy-val">As room
                 type</span></div>
-            <div class="policy-row"><span class="policy-key">Extra guests</span><span class="policy-val">$25
+            <div class="policy-row"><span class="policy-key">Extra guests</span><span class="policy-val">$25 
                 person/night</span></div>
           </div>
+    
           <div class="policy-card">
             <div class="policy-card-title"><span class="policy-icon">🏨</span> Property Rules</div>
             <div class="policy-row"><span class="policy-key">Smoking</span><span class="policy-val">Smoke-free ($250
                 fee)</span></div>
-            <div class="policy-row"><span class="policy-key">Pets</span><span class="policy-val">Pet Friendly - $20/
-                night/ pet</span></div>
+            <div class="policy-row"><span class="policy-key">Pets</span><span class="policy-val">Pet Friendly - $20/ night/ pet</span>
+            </div>
+            
             <div class="policy-row"><span class="policy-key">Parking</span><span class="policy-val">Complimentary
                 self-parking</span></div>
           </div>
+    
+
+    
           <div class="policy-card">
-            <div class="policy-card-title"><span class="policy-icon">⚖️</span> Other Policies</div>
-            <div class="policy-row">Please note an incidental hold of 150 USD will be applied to all rooms at check in.
-              Any unused funds will be released to the payment method on file at check out,
-              and may take up to 7 to 10 business days to become available</div>
+            <div class="policy-card-title"><span class="policy-icon">⚖️</span>Other Policies</div>
+            <div class="policy-row">Please note an incidental hold of 150 USD will be applied to 
+              all rooms at check in. Any unused funds will be released to
+            the payment method on file at check out, 
+            and may take up to 7 to 10 business days to become available</div>
+           
+            
           </div>
         </div>
       </div>
@@ -597,146 +735,400 @@
 
   </div><!-- end wrapper -->
 
-  <!-- ===== READ MORE MODAL ===== -->
+
+
   <div class="modal-overlay" id="readmore-modal" onclick="closeModal('readmore-modal')">
     <div class="room-modal readmore-modal" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeModal('readmore-modal')">✕</button>
-      <div class="modal-header readmore-header">
-        <p class="readmore-top-title">About the hotel</p>
-        <h2>Book our affordable hotel in Searcy, AR</h2>
-      </div>
-      <div class="readmore-body">
-        <p>The Magnolia hotel offers an affordable stay in a prime location off I-57 at Exit 46. As our guest, you'll
-          enjoy quick access to the shopping center next door, home to top coffee shops, restaurant chains and retail
-          stores. Area attractions include Harding University, Arkansas State University, 18-hole golf courses, Searcy's
-          Sports Complex, Berryhill Park and Unity Health Hospital—all less than a mile away. Or spend some time at the
-          nearby playground, picnic areas and walking trails.</p>
-        <p>We're proud to offer enjoyable convenience and simplicity at our hotel. Stay connected with free WiFi
-          throughout the property, start your morning with free coffee, and go for a swim in our seasonal outdoor pool.
-          Business travelers appreciate our business center with fax and copy machines. And all travelers have access to
-          free accessible parking, which includes truck and bus parking. Laundry facilities are also located on the
-          property.</p>
-        <p>Each guest room comes equipped with a refrigerator, microwave, coffee maker, iron and ironing board, hair
-          dryer and an HDTV with 160 channels (including premium movie channels). With a location just off the highway,
-          the Econo Lodge Inn &amp; Suites is easy to find, and our affordable rates are easy on your wallet.</p>
-        <div class="readmore-love-box">
-          <h3>Things You'll Love</h3>
-          <div class="readmore-love-grid">
-            <div class="love-item"><span class="love-check">✓</span><span>Conveniently located off I-57</span></div>
-            <div class="love-item"><span class="love-check">✓</span><span>Truck and bus parking</span></div>
-            <div class="love-item"><span class="love-check">✓</span><span>Minutes from Harding University</span></div>
-            <div class="love-item"><span class="love-check">✓</span><span>Near Berryhill Park</span></div>
-          </div>
+        <button class="modal-close-btn" onclick="closeModal('readmore-modal')">✕</button>
+
+        <div class="modal-header readmore-header">
+            <p class="readmore-top-title">About the hotel</p>
+            <h2>Book our affordable hotel in Searcy, AR</h2>
         </div>
-      </div>
+
+        <div class="readmore-body">
+            <p>
+                The Magnolia hotel offers an affordable stay in a prime
+                location off I-57 at Exit 46. As our guest, you'll enjoy quick access to the shopping center next door,
+                home to top coffee shops, restaurant chains and retail stores. Area attractions include Harding
+                University, Arkansas State University, 18-hole golf courses, Searcy's Sports Complex, Berryhill Park and
+                Unity Health Hospital—all less than a mile away. Or spend some time at the nearby playground, picnic
+                areas and walking trails.
+            </p>
+
+            <p>
+                We're proud to offer enjoyable convenience and simplicity at our hotel. Stay connected with free WiFi
+                throughout the property, start your morning with free coffee, and go for a swim in our seasonal outdoor
+                pool. Business travelers appreciate our business center with fax and copy machines. And all travelers
+                have access to free accessible parking, which includes truck and bus parking. Laundry facilities are
+                also located on the property.
+            </p>
+
+            <p>
+                Each guest room comes equipped with a refrigerator, microwave, coffee maker, iron and ironing board,
+                hair dryer and an HDTV with 160 channels (including premium movie channels). With a location just off
+                the highway, the Econo Lodge Inn &amp; Suites is easy to find, and our affordable rates are easy on your
+                wallet.
+            </p>
+
+            <div class="readmore-love-box">
+                <h3>Things You’ll Love</h3>
+
+                <div class="readmore-love-grid">
+                    <div class="love-item">
+                        <span class="love-check">✓</span>
+                        <span>Conveniently located off I-57</span>
+                    </div>
+
+                    <div class="love-item">
+                        <span class="love-check">✓</span>
+                        <span>Truck and bus parking</span>
+                    </div>
+
+                    <div class="love-item">
+                        <span class="love-check">✓</span>
+                        <span>Minutes from Harding University</span>
+                    </div>
+
+                   
+
+                    <div class="love-item">
+                        <span class="love-check">✓</span>
+                        <span>Near Berryhill Park</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- ===== ROOM 1 MODAL ===== -->
+  <div class="modal-overlay" id="room1-modal" onclick="closeModal('room1-modal')">
+    <div class="room-modal" onclick="event.stopPropagation()">
+        <button class="modal-close-btn" onclick="closeModal('room1-modal')">✕</button>
+        <div class="modal-header">
+            <h2>Room Details</h2>
+        </div>
+        <div class="modal-image-section">
+            <div class="modal-main-image" id="room1-img-wrap">
+                <img id="room1-img"
+                    src="Assets/1.jpeg"
+                    alt="Room" />
+                <button class="modal-nav-btn modal-prev" onclick="modalSlide('room1', -1)">‹</button>
+                <button class="modal-nav-btn modal-next" onclick="modalSlide('room1', 1)">›</button>
+                <div class="modal-image-caption">King Beds - Non Smoking (NK)
+                </div>
+            </div>
+        </div>
+        <div class="modal-info-section">
+            <h3>King Beds - Non Smoking (NK)</h3>
+            <p class="modal-bed-info">1 room</p>
+            <div class="modal-features">
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">👥</div><span>2 Guests</span>
+                </div>
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">🚭</div><span>No Smoking</span>
+                </div>
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">📐</div><span>28 sqmt</span>
+                </div>
+            </div>
+            <div class="modal-amenities-section">
+                <h4>Amenities</h4>
+                <h5>Room</h5>
+                <div class="modal-amenities-grid">
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🚿</div><span>Shower</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📺</div><span>Flat TV</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📺</div><span>TV, Cable/Satellite</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🖥️</div><span>Desk with Electrical Outlet</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">❄️</div><span>Refrigerator</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">💨</div><span>Hair Dryer</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">👔</div><span>Iron and Ironing Board</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🍽️</div><span>Microwave</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">☕</div><span>Coffee Maker</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📡</div><span>Wireless Streaming TV Service</span>
+                    </div>
+                </div>
+                <p class="modal-additional-cost">*May require an additional cost</p>
+            </div>
+            <div class="modal-pricing">
+                <button class="modal-book-btn"
+                    onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">Book Now</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- ===== ROOM 2 MODAL ===== -->
+  <div class="modal-overlay" id="room2-modal" onclick="closeModal('room2-modal')">
+    <div class="room-modal" onclick="event.stopPropagation()">
+        <button class="modal-close-btn" onclick="closeModal('room2-modal')">✕</button>
+        <div class="modal-header">
+            <h2>Room Details</h2>
+        </div>
+        <div class="modal-image-section">
+            <div class="modal-main-image">
+                <img id="room2-img"
+                    src="Assets/13.jpeg"
+                    alt="Room" />
+                <button class="modal-nav-btn modal-prev" onclick="modalSlide('room2', -1)">‹</button>
+                <button class="modal-nav-btn modal-next" onclick="modalSlide('room2', 1)">›</button>
+                <div class="modal-image-caption">King Beds- Smoking (K)
+                </div>
+            </div>
+        </div>
+        <div class="modal-info-section">
+            <h3>King Beds- Smoking (K)</h3>
+            <p class="modal-bed-info">1 room</p>
+            <div class="modal-features">
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">👥</div><span>2 guests maximum</span>
+                </div>
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">🚭</div><span>No Smoking</span>
+                </div>
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">📐</div><span>32 sqmt</span>
+                </div>
+            </div>
+            <div class="modal-amenities-section">
+                <h4>Amenities</h4>
+                <h5>Room</h5>
+                <div class="modal-amenities-grid">
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🚿</div><span>Shower</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📺</div><span>Flat TV</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📺</div><span>TV, Cable/Satellite</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🖥️</div><span>Desk with Electrical Outlet</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">❄️</div><span>Refrigerator</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">💨</div><span>Hair Dryer</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">👔</div><span>Iron and Ironing Board</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🍽️</div><span>Microwave</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">☕</div><span>Coffee Maker</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📡</div><span>Wireless Streaming TV Service</span>
+                    </div>
+                </div>
+                <p class="modal-additional-cost">*May require an additional cost</p>
+            </div>
+            <div class="modal-pricing">
+                <button class="modal-book-btn"
+                    onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">Book
+                    Now</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- ===== ROOM 3 MODAL ===== -->
+  <div class="modal-overlay" id="room3-modal" onclick="closeModal('room3-modal')">
+    <div class="room-modal" onclick="event.stopPropagation()">
+        <button class="modal-close-btn" onclick="closeModal('room3-modal')">✕</button>
+        <div class="modal-header">
+            <h2>Room Details</h2>
+        </div>
+        <div class="modal-image-section">
+            <div class="modal-main-image">
+                <img id="room3-img"
+                    src="Assets/11.jpeg"
+                    alt="Room" />
+                <button class="modal-nav-btn modal-prev" onclick="modalSlide('room3', -1)">‹</button>
+                <button class="modal-nav-btn modal-next" onclick="modalSlide('room3', 1)">›</button>
+                <div class="modal-image-caption">Handicap King Room - Non Smoking (HNK)
+                </div>
+            </div>
+        </div>
+        <div class="modal-info-section">
+            <h3>Handicap King Room - Non Smoking (HNK)</h3>
+            <p class="modal-bed-info">1 room</p>
+            <div class="modal-features">
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">👥</div><span>2 guests maximum</span>
+                </div>
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">🛁</div><span>Jacuzzi</span>
+                </div>
+                <div class="modal-feature-item">
+                    <div class="modal-feature-icon">📐</div><span>50 sqmt</span>
+                </div>
+            </div>
+            <div class="modal-amenities-section">
+                <h4>Amenities</h4>
+                <h5>Room</h5>
+                <div class="modal-amenities-grid">
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🛁</div><span>Private Jacuzzi</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🚿</div><span>Rainfall Shower</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">📺</div><span>Flat TV</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🖥️</div><span>Executive Workspace</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">❄️</div><span>Wine Cooler</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                      <div class="modal-amenity-icon">👔</div><span>Iron and Ironing Board</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">💨</div><span>Premium Hair Dryer</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">👔</div><span>Spa Robes & Slippers</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🍽️</div><span>Full Kitchen</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">☕</div><span>Gourmet Coffee Bar</span>
+                    </div>
+                    <div class="modal-amenity-item">
+                        <div class="modal-amenity-icon">🌟</div><span>Personal Concierge</span>
+                    </div>
+                </div>
+                <p class="modal-additional-cost">*May require an additional cost</p>
+            </div>
+            <div class="modal-pricing">
+                <button class="modal-book-btn"
+                    onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">Book
+                    Now</button>
+            </div>
+        </div>
     </div>
   </div>
 
   <!-- ===== AMENITIES MODAL ===== -->
   <div class="modal-overlay" id="amenities-modal" onclick="closeModal('amenities-modal')">
     <div class="room-modal" onclick="event.stopPropagation()" style="max-width:600px">
-      <button class="modal-close-btn" onclick="closeModal('amenities-modal')">✕</button>
-      <div class="modal-header">
-        <h2>Amenities</h2>
-      </div>
-      <div class="modal-info-section">
-        <h3 style="font-size:20px;margin-bottom:16px">Hotel Amenities</h3>
-        <div class="modal-amenities-grid">
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🍳</div><span>Free Hot Breakfast</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🚛</div><span>Truck Parking</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🧊</div><span>Ice machine</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">⭐</div><span>Government Travelers: FEMA Approved</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🅿️</div><span>Free Parking</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🐕</div><span>Pet Friendly - $20/ night/ pet</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🚌</div><span>Bus Parking</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🧺</div><span>Guest Laundry</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">💼</div><span>Business Center</span>
-          </div>
+        <button class="modal-close-btn" onclick="closeModal('amenities-modal')">✕</button>
+        <div class="modal-header">
+            <h2>Amenities</h2>
         </div>
-        <h3 style="font-size:20px;margin-bottom:16px;margin-top:20px">Accessibility amenities</h3>
-        <p style="font-size:14px;color:#6b7280;line-height:1.6;margin-top:-15px">(Amenities may vary by room type)</p>
-        <div class="modal-amenities-grid">
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🅿️</div><span>Free Accessible Parking</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">✓</div><span>Accessible Features</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">✓</div><span>Accessible Hotel</span>
-          </div>
-          <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">♿</div><span>Accessible ramps</span>
-          </div>
+        <div class="modal-info-section">
+            <h3 style="font-size:20px;margin-bottom:16px">Hotel Amenities</h3>
+            <div class="modal-amenities-grid">
+              
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🍳</div><span>Free Hot Breakfast</span>
+                </div>
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🚛</div><span>Truck Parking</span>
+                </div>
+                <div class="modal-amenity-item">
+                  <div class="modal-amenity-icon">🧊</div><span>Ice machine</span>
+                </div>
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">⭐</div><span>Government Travelers: FEMA Approved</span>
+                </div>
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🅿️</div><span>Free Parking</span>
+                </div>
+                
+                
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🐕</div><span>Pet Friendly - $20/ night/ pet</span>
+                </div>
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🚌</div><span>Bus Parking</span>
+                </div>
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🧺</div><span> Guest Laundry</span>
+                </div>
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">💼</div><span>Business Center</span>
+                </div>
+            </div>
+            <h3 style="font-size:20px;margin-bottom:16px">Accessibility amenities</h3>
+            <p style="font-size:14px;color:#6b7280;line-height:1.6;margin-top:-15px">(Amenities may vary by room type)
+            </p>
+            <div class="modal-amenities-grid">
+
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">🅿️</div>
+                    <span>Free Accessible Parking</span>
+                </div>
+
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">✓</div>
+                    <span>Accessible Features</span>
+                </div>
+
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">✓</div>
+                    <span>Accessible Hotel</span>
+                </div>
+
+                <div class="modal-amenity-item">
+                    <div class="modal-amenity-icon">♿</div>
+                    <span>Accessible ramps</span>
+                </div>
+
+            </div>
+            <p class=" modal-additional-cost">*May require an additional cost</p>
+            <div style="border-top:1px solid #e5e7eb;margin-top:20px;padding-top:20px">
+                <h3 style="font-size:18px;margin-bottom:12px">What this place offers</h3>
+                <p style="font-size:14px;color:#6b7280;line-height:1.6">The amenities at our Searcy hotel include free
+                    WiFi in
+                    guest rooms and common areas, free hot breakfast and coffee each morning and free parking for
+                    compact and
+                    oversized vehicles. Guests can also enjoy access to our seasonal outdoor pool, business center and
+                    laundry
+                    facilities.</p>
+            </div>
         </div>
-        <p class="modal-additional-cost">*May require an additional cost</p>
-        <div style="border-top:1px solid #e5e7eb;margin-top:20px;padding-top:20px">
-          <h3 style="font-size:18px;margin-bottom:12px">What this place offers</h3>
-          <p style="font-size:14px;color:#6b7280;line-height:1.6">The amenities at our Searcy hotel include free WiFi in
-            guest rooms and common areas, free hot breakfast and coffee each morning and free parking for compact and
-            oversized vehicles. Guests can also enjoy access to our seasonal outdoor pool, business center and laundry
-            facilities.</p>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- ✅ Dynamic room modals - roomData.js se inject honge -->
-  <div id="dynamic-modals"></div>
-
-  <!-- Bootstrap JS -->
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <!-- Your JS -->
-  <script src="js/script.js"></script>
+<!-- Bootstrap JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- Your JS -->
+<script src="js/script.js"></script>
   <script src="script.js"></script>
-
-  <!-- ✅ Room cards + modals dynamically load karo -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const grid = document.getElementById('rooms-grid');
-      const modalContainer = document.getElementById('dynamic-modals');
-
-      // Sirf pehle 3 rooms index page par dikhao
-      ROOMS.slice(0, 3).forEach(function (room) {
-        grid.insertAdjacentHTML('beforeend', buildRoomCard(room, true));
-        modalContainer.insertAdjacentHTML('beforeend', buildRoomModal(room));
-      });
-
-      // Entrance animation
-      document.querySelectorAll('#rooms-grid .room-card').forEach(function (card, i) {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        setTimeout(function () {
-          card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, i * 100);
-      });
-    });
-  </script>
-
 </body>
-
-<footer class="hotel-footer">
+  <footer class="hotel-footer">
   <div class="footer-container">
     <div class="footer-content">
+      <!-- Logo & Contact -->
       <div class="footer-left">
         <div class="footer-logo">
           <img src="Assets/logo.png" alt="The Magnolia Hotel - Searcy" />
@@ -745,287 +1137,246 @@
         <p>📍 120 North Rand Drive, Searcy, AR</p>
         <p>📞 (501) 279-1200</p>
       </div>
+
+      <!-- Book Button -->
       <div class="footer-right">
-        <button class="footer-book-btn"
-          onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">
+        <button class="footer-book-btn" onclick="window.open('https://bookingengine.stayflexi.com/?hotel_id=35780', '_blank')">
           Book Now
         </button>
       </div>
     </div>
+
+    <!-- Bottom Line -->
     <div class="footer-bottom">
       <p>&copy; 2026 The Magnolia Hotel - Searcy</p>
+      
+      <!-- Hover Terms Link -->
+      
+
+    </div>
+  </div>
+<!-- ACCESSIBILITY WIDGET -->
+<button class="accessibility-fab" onclick="toggleA11yPanel()" aria-label="Open Accessibility Panel"></button>
+
+<div id="accessibilityWidget" class="accessibility-widget" style="display: none;">
+  <div class="widget-header">
+    <div class="widget-logo">
+      <span class="logo-text">ada.tray</span>
+    </div>
+    <button class="close-btn" onclick="toggleA11yPanel()">
+      <span>ESC</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="widget-sidebar">
+    <div class="sidebar-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z" />
+      </svg>
+      <div>
+        <div class="sidebar-title">Keyboard Nav</div>
+        <div class="sidebar-subtitle">(Shift + A To Activate)</div>
+      </div>
+    </div>
+    <div class="sidebar-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z" />
+      </svg>
+      <div class="sidebar-title">Reset Button</div>
+    </div>
+    <div class="sidebar-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+      </svg>
+      <div class="sidebar-title">Help Button</div>
     </div>
   </div>
 
-  <!-- ACCESSIBILITY WIDGET -->
-  <button class="accessibility-fab" onclick="toggleA11yPanel()" aria-label="Open Accessibility Panel"></button>
+  <div class="widget-content">
+    <!-- CONTENT & DISPLAY ADJUSTMENTS -->
+    <div class="widget-section">
+      <div class="section-header">
+        <h4>CONTENT & DISPLAY ADJUSTMENTS</h4>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="widget-grid">
+        <button class="widget-btn" onclick="applyAccessibility('remove-images')">
+          <div class="btn-icon">🖼️</div>
+          <span>Remove Images</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">🔊</div>
+          <span>Listen</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('disable-animations')">
+          <div class="btn-icon">🎬</div>
+          <span>Disable Animations</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('increase-font')">
+          <div class="btn-icon">A+</div>
+          <span>Increase Fonts</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('decrease-font')">
+          <div class="btn-icon">A-</div>
+          <span>Decrease Fonts</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('reset-font')">
+          <div class="btn-icon">A</div>
+          <span>Reset Font</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('zoom-increase')">
+          <div class="btn-icon">🔍+</div>
+          <span>Zoom Increase</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('zoom-decrease')">
+          <div class="btn-icon">🔍-</div>
+          <span>Zoom Decrease</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('increase-line-height')">
+          <div class="btn-icon">≡</div>
+          <span>Increase Line Height</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('decrease-line-height')">
+          <div class="btn-icon">≡</div>
+          <span>Decrease Line Height</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">≡</div>
+          <span>Increase Word Spacing</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">≡</div>
+          <span>Decrease Word Spacing</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">A+</div>
+          <span>Increase Letter Spacing</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">A-</div>
+          <span>Decrease Letter Spacing</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">≡</div>
+          <span>Align Center</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">≡</div>
+          <span>Align Left</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">≡</div>
+          <span>Align Right</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">≡</div>
+          <span>Align Justify</span>
+        </button>
+        <button class="widget-btn" onclick="applyAccessibility('bold-fonts')">
+          <div class="btn-icon">B</div>
+          <span>Bold Fonts</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">T</div>
+          <span>Highlights Titles</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">🔗</div>
+          <span>Highlights Links</span>
+        </button>
+        <button class="widget-btn">
+          <div class="btn-icon">↗</div>
+          <span>Black Cursor</span>
+        </button>
+      </div>
+    </div>
 
-  <div id="accessibilityWidget" class="accessibility-widget" style="display: none;">
-    <div class="widget-header">
-      <div class="widget-logo">
-        <span class="logo-text">ada.tray</span>
+    <!-- COLOR ADJUSTMENTS -->
+    <div class="widget-section">
+      <div class="section-header">
+        <h4>COLOR ADJUSTMENTS</h4>
+        <span class="expand-icon">▼</span>
       </div>
-      <button class="close-btn" onclick="toggleA11yPanel()">
-        <span>ESC</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-        </svg>
-      </button>
+      <div class="widget-grid color-grid">
+        <button class="widget-btn color-btn" onclick="applyAccessibility('mono-chrome')">
+          <div class="color-circle mono-chrome-bg"></div>
+          <span>Mono Chrome</span>
+        </button>
+        <button class="widget-btn color-btn" onclick="applyAccessibility('gray-scale')">
+          <div class="color-circle gray-scale-bg"></div>
+          <span>Gray Scale</span>
+        </button>
+        <button class="widget-btn color-btn">
+          <div class="color-circle title-color-bg"></div>
+          <span>Title Color</span>
+        </button>
+        <button class="widget-btn color-btn">
+          <div class="color-circle text-color-bg"></div>
+          <span>Text Color</span>
+        </button>
+        <button class="widget-btn color-btn" onclick="applyAccessibility('sepia')">
+          <div class="color-circle sepia-bg"></div>
+          <span>Sepia</span>
+        </button>
+        <button class="widget-btn color-btn" onclick="applyAccessibility('high-contrast')">
+          <div class="color-circle high-contrast-bg"></div>
+          <span>High Contrast</span>
+        </button>
+        <button class="widget-btn color-btn" onclick="applyAccessibility('invert-colors')">
+          <div class="color-circle invert-bg"></div>
+          <span>Invert</span>
+        </button>
+        <button class="widget-btn color-btn" onclick="applyAccessibility('wcag-contrast')">
+          <div class="color-circle wcag-bg"></div>
+          <span>WCAG Contrast</span>
+        </button>
+      </div>
     </div>
-    <div class="widget-sidebar">
-      <div class="sidebar-item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z" />
-        </svg>
-        <div>
-          <div class="sidebar-title">Keyboard Nav</div>
-          <div class="sidebar-subtitle">(Shift + A To Activate)</div>
-        </div>
+
+    <!-- ADDITIONAL INFORMATION -->
+    <div class="widget-section">
+      <div class="section-header">
+        <h4>ADDITIONAL INFORMATION</h4>
+        <span class="expand-icon">▼</span>
       </div>
-      <div class="sidebar-item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z" />
-        </svg>
-        <div class="sidebar-title">Reset Button</div>
-      </div>
-      <div class="sidebar-item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
-        </svg>
-        <div class="sidebar-title">Help Button</div>
+      <div class="widget-grid info-grid">
+        <button class="widget-btn info-btn">
+          <div class="info-icon">W3C</div>
+          <span>Initiative</span>
+        </button>
+        <button class="widget-btn info-btn">
+          <div class="info-icon">♿</div>
+          <span>Accessibility Statement</span>
+        </button>
       </div>
     </div>
-    <div class="widget-content">
-      <div class="widget-section">
-        <div class="section-header">
-          <h4>CONTENT & DISPLAY ADJUSTMENTS</h4>
-          <span class="expand-icon">▼</span>
-        </div>
-        <div class="widget-grid">
-          <button class="widget-btn" onclick="applyAccessibility('remove-images')">
-            <div class="btn-icon">🖼️</div><span>Remove Images</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">🔊</div><span>Listen</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('disable-animations')">
-            <div class="btn-icon">🎬</div><span>Disable Animations</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('increase-font')">
-            <div class="btn-icon">A+</div><span>Increase Fonts</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('decrease-font')">
-            <div class="btn-icon">A-</div><span>Decrease Fonts</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('reset-font')">
-            <div class="btn-icon">A</div><span>Reset Font</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('zoom-increase')">
-            <div class="btn-icon">🔍+</div><span>Zoom Increase</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('zoom-decrease')">
-            <div class="btn-icon">🔍-</div><span>Zoom Decrease</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('increase-line-height')">
-            <div class="btn-icon">≡</div><span>Increase Line Height</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('decrease-line-height')">
-            <div class="btn-icon">≡</div><span>Decrease Line Height</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">≡</div><span>Increase Word Spacing</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">≡</div><span>Decrease Word Spacing</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">A+</div><span>Increase Letter Spacing</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">A-</div><span>Decrease Letter Spacing</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">≡</div><span>Align Center</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">≡</div><span>Align Left</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">≡</div><span>Align Right</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">≡</div><span>Align Justify</span>
-          </button>
-          <button class="widget-btn" onclick="applyAccessibility('bold-fonts')">
-            <div class="btn-icon">B</div><span>Bold Fonts</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">T</div><span>Highlights Titles</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">🔗</div><span>Highlights Links</span>
-          </button>
-          <button class="widget-btn">
-            <div class="btn-icon">↗</div><span>Black Cursor</span>
-          </button>
-        </div>
+
+    <!-- RESET ALL -->
+    <div class="widget-section">
+      <div class="section-header">
+        <h4>RESET ALL</h4>
+        <span class="expand-icon">▼</span>
       </div>
-      <div class="widget-section">
-        <div class="section-header">
-          <h4>COLOR ADJUSTMENTS</h4>
-          <span class="expand-icon">▼</span>
-        </div>
-        <div class="widget-grid color-grid">
-          <button class="widget-btn color-btn" onclick="applyAccessibility('mono-chrome')">
-            <div class="color-circle mono-chrome-bg"></div><span>Mono Chrome</span>
-          </button>
-          <button class="widget-btn color-btn" onclick="applyAccessibility('gray-scale')">
-            <div class="color-circle gray-scale-bg"></div><span>Gray Scale</span>
-          </button>
-          <button class="widget-btn color-btn">
-            <div class="color-circle title-color-bg"></div><span>Title Color</span>
-          </button>
-          <button class="widget-btn color-btn">
-            <div class="color-circle text-color-bg"></div><span>Text Color</span>
-          </button>
-          <button class="widget-btn color-btn" onclick="applyAccessibility('sepia')">
-            <div class="color-circle sepia-bg"></div><span>Sepia</span>
-          </button>
-          <button class="widget-btn color-btn" onclick="applyAccessibility('high-contrast')">
-            <div class="color-circle high-contrast-bg"></div><span>High Contrast</span>
-          </button>
-          <button class="widget-btn color-btn" onclick="applyAccessibility('invert-colors')">
-            <div class="color-circle invert-bg"></div><span>Invert</span>
-          </button>
-          <button class="widget-btn color-btn" onclick="applyAccessibility('wcag-contrast')">
-            <div class="color-circle wcag-bg"></div><span>WCAG Contrast</span>
-          </button>
-        </div>
-      </div>
-      <div class="widget-section">
-        <div class="section-header">
-          <h4>ADDITIONAL INFORMATION</h4>
-          <span class="expand-icon">▼</span>
-        </div>
-        <div class="widget-grid info-grid">
-          <button class="widget-btn info-btn">
-            <div class="info-icon">W3C</div><span>Initiative</span>
-          </button>
-          <button class="widget-btn info-btn">
-            <div class="info-icon">♿</div><span>Accessibility Statement</span>
-          </button>
-        </div>
-      </div>
-      <div class="widget-section">
-        <div class="section-header">
-          <h4>RESET ALL</h4>
-          <span class="expand-icon">▼</span>
-        </div>
-        <div class="widget-grid">
-          <button class="widget-btn reset-btn" onclick="applyAccessibility('reset-all')">
-            <div class="btn-icon">🔄</div><span>Reset All Settings</span>
-          </button>
-        </div>
+      <div class="widget-grid">
+        <button class="widget-btn reset-btn" onclick="applyAccessibility('reset-all')">
+          <div class="btn-icon">🔄</div>
+          <span>Reset All Settings</span>
+        </button>
       </div>
     </div>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const grid = document.getElementById('rooms-grid');
-      const modalContainer = document.getElementById('dynamic-modals');
-      let currentIndex = 0;
-      let isFirstLoad = true;
-      let activeFilter = 'all';
-
-      // ✅ Pehle saare modals ek baar build kar lo
-      ROOMS.forEach(function (room) {
-        modalContainer.insertAdjacentHTML('beforeend', buildRoomModal(room));
-      });
-
-      function clearGrid() {
-        grid.innerHTML = '';
-        currentIndex = 0;
-        isFirstLoad = true;
-      }
-
-      function renderRooms(roomsToShow) {
-        roomsToShow.forEach(function (room) {
-          grid.insertAdjacentHTML('beforeend', buildRoomCard(room, true));
-        });
-
-        // Animate
-        const allCards = grid.querySelectorAll('.room-card');
-        allCards.forEach(function (card, i) {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(function () {
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, i * 100);
-        });
-      }
-
-      function loadAllRooms() {
-        clearGrid();
-        activeFilter = 'all';
-
-        // ✅ Pehli baar 3 rooms
-        const firstBatch = ROOMS.slice(0, 3);
-        renderRooms(firstBatch);
-        currentIndex = 3;
-        isFirstLoad = false;
-
-        // More Rooms button dikhao
-        const moreBtn = document.querySelector('.more-rooms-btn');
-        if (moreBtn) moreBtn.style.display = 'flex';
-      }
-
-      function loadFilteredRooms(type) {
-        clearGrid();
-        activeFilter = type;
-
-        // ✅ Filter me sirf 1 room dikhao
-        const filtered = ROOMS.filter(r => r.type === type);
-        const oneRoom = filtered.slice(0, 1);
-        renderRooms(oneRoom);
-
-        // More Rooms button hide karo filter me
-        const moreBtn = document.querySelector('.more-rooms-btn');
-        if (moreBtn) moreBtn.style.display = 'none';
-      }
-
-      // ✅ Page load pe 3 rooms
-      loadAllRooms();
-
-      // ✅ More Rooms button - room.html pe redirect
-      const moreBtn = document.querySelector('.more-rooms-btn');
-      if (moreBtn) {
-        moreBtn.onclick = function () {
-          window.location.href = 'room.html';
-        };
-      }
-
-      // ✅ Filter buttons
-      window.filterRooms = function (type, btn) {
-        // Active class update
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        if (type === 'all') {
-          loadAllRooms();
-        } else {
-          loadFilteredRooms(type);
-        }
-      };
-    });
-  </script>
-
+</div>
+  
   <script src="script.js"></script>
-</footer>
+  
+  </body>
 
+</footer>
 </html>
