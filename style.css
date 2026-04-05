@@ -531,7 +531,6 @@ body {
 }
 
 /* ========== HEADER ========== */
-
 .hotel-header {
   background: white;
   border-bottom: 1px solid #e5e7eb;
@@ -594,11 +593,23 @@ body {
 }
 
 .hotel-title {
-  font-size: 26px;
-  font-weight: 600;
-  color: black;
-  margin: 0 0 4px 0;
+  font-size: 34px;
+  font-weight: 650;
+  color: #1a202c;
+  margin: 0 0 7px 0;
   line-height: 1.2;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.3px;
+}
+
+.hotel-subtitle {
+  display: block;
+  font-size: 24px;
+  font-weight: 550;
+  color: #4c576c;
+  font-style: italic;
+  margin: 0;
+  letter-spacing: 0.2px;
 }
 
 .hotel-rating-location-phone {
@@ -646,12 +657,9 @@ body {
 }
 
 @keyframes tiny-pulse {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.15);
   }
@@ -726,6 +734,7 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(107, 140, 58, 0.3);
 }
+
 
 /* Modal styles */
 .booking-modal {
@@ -1278,8 +1287,8 @@ body {
 }
 
 .overview-left h2 {
-  font-size: 35px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 650;
   line-height: 1.20;
   margin: 12px 0 18px;
   color: black;
@@ -1817,10 +1826,10 @@ body {
 }
 
 .nearby-left p {
-  font-size: 15px;
+  font-size: 13px;
   color: #08090b;
   line-height: 1.7;
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
   transition: all 0.4s ease;
 }

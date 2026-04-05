@@ -3,7 +3,7 @@ const imageData = [
   { id: 1, caption: 'Guest room', category: 'Rooms & Suites' },
   { id: 2, caption: 'Breakfast Lounge', category: 'Amenities' },
   { id: 3, caption: 'Hotel exterior', category: 'Exterior' },
-  { id: 4, caption: 'Front Office', category: 'Amenities' },
+  { id: 4, caption: 'Front Office', category: '' },
   { id: 5, caption: 'Hotel exterior', category: 'Exterior' },
   { id: 6, caption: 'Hotel lobby', category: 'Lobby' },
   { id: 7, caption: 'Front desk with friendly staff', category: '' },
@@ -21,12 +21,12 @@ const imageData = [
   { id: 19, caption: 'Front Office', category: 'Lobby' },
   { id: 20, caption: 'outdoor pool', category: 'Amenities' },
   { id: 21, caption: 'Breakfast area', category: 'Breakfast Area' },
-  { id: 22, caption: 'Breakfast area', category: 'Breakfast Area' },
-  { id: 23, caption: 'Enjoy breakfast in this seating area', category: 'Breakfast Area' },
+  { id: 22, caption: 'Breakfast area', category: '' },
+  { id: 23, caption: 'Enjoy breakfast in this seating area', category: '' },
   { id: 24, caption: 'Relax on the sundeck', category: '' },
   { id: 25, caption: 'Outdoor pool', category: '' },
   { id: 26, caption: 'Hotel exterior', category: 'Exterior' },
-  { id: 27, caption: 'Business center', category: '' },
+  { id: 27, caption: 'Amenity', category: 'Amenities' },
 ];
 
 
