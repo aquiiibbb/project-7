@@ -26,7 +26,7 @@ const imageData = [
   { id: 24, caption: 'Relax on the sundeck', category: '' },
   { id: 25, caption: 'Outdoor pool', category: '' },
   { id: 26, caption: 'Hotel exterior', category: 'Exterior' },
-  { id: 27, caption: 'Amenity', category: 'Amenities' },
+  { id: 27, caption: 'Amenity', category: '' },
 ];
 
 
