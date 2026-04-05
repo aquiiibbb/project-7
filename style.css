@@ -671,9 +671,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin-top: -76px;
-  margin-bottom: 29px;
-  margin-left: 363px;
+  
+margin-top: 60px;
 }
 
 .booking-field {
@@ -1142,6 +1141,7 @@ body {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+  padding-top: 30px;
 }
 
 /* ========== PHOTO GRID ========== */

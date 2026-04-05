@@ -58,6 +58,81 @@
     </div>
   </header>
 
+  
+
+      <div class="booking-row">
+        <div class="booking-field" onclick="showDatePicker('checkin')">
+          <label class="booking-label">Check in</label>
+          <div class="booking-value" id="checkin-display">Wed, 01 Apr</div>
+        </div>
+        <div class="booking-field" onclick="showDatePicker('checkout')">
+          <label class="booking-label">Check out</label>
+          <div class="booking-value" id="checkout-display">Thu, 02 Apr</div>
+        </div>
+        <div class="booking-field" onclick="showGuestSelector()">
+          <label class="booking-label">Rooms & guests</label>
+          <div class="booking-value" id="guest-display">1 room, 1 guest</div>
+        </div>
+        <button class="search-btn" onclick="performSearch()">
+          Search
+        </button>
+      </div>
+
+      <!-- Date Picker Modal -->
+      <div id="date-picker-modal" class="booking-modal">
+        <div class="booking-modal-content">
+          <div class="booking-modal-header">
+            <h3 id="date-picker-title">Select Date</h3>
+            <span class="modal-close" onclick="hideDatePicker()">&times;</span>
+          </div>
+          <div class="date-picker-container">
+            <div class="date-picker-header">
+              <button class="date-picker-nav" onclick="navigateMonth(-1)">&lt;</button>
+              <span class="date-picker-month" id="current-month-display"></span>
+              <button class="date-picker-nav" onclick="navigateMonth(1)">&gt;</button>
+            </div>
+            <div class="date-picker-grid" id="date-picker-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guest Selector Modal -->
+      <div id="guest-selector-modal" class="booking-modal">
+        <div class="booking-modal-content">
+          <div class="booking-modal-header">
+            <h3>Rooms & Guests</h3>
+            <span class="modal-close" onclick="hideGuestSelector()">&times;</span>
+          </div>
+          <div class="guest-selector-container">
+            <div class="guest-selector-row">
+              <span class="guest-selector-label">Rooms</span>
+              <div class="guest-counter">
+                <button class="guest-counter-btn" onclick="updateGuestCount('rooms', -1)">−</button>
+                <span class="guest-counter-value" id="rooms-counter">1</span>
+                <button class="guest-counter-btn" onclick="updateGuestCount('rooms', 1)">+</button>
+              </div>
+            </div>
+            <div class="guest-selector-row">
+              <span class="guest-selector-label">Adults</span>
+              <div class="guest-counter">
+                <button class="guest-counter-btn" onclick="updateGuestCount('adults', -1)">−</button>
+                <span class="guest-counter-value" id="adults-counter">1</span>
+                <button class="guest-counter-btn" onclick="updateGuestCount('adults', 1)">+</button>
+              </div>
+            </div>
+            <div class="guest-selector-row">
+              <span class="guest-selector-label">Children</span>
+              <div class="guest-counter">
+                <button class="guest-counter-btn" onclick="updateGuestCount('children', -1)">−</button>
+                <span class="guest-counter-value" id="children-counter">0</span>
+                <button class="guest-counter-btn" onclick="updateGuestCount('children', 1)">+</button>
+              </div>
+            </div>
+            <button class="guest-apply-btn" onclick="applyGuestChanges()">Apply</button>
+          </div>
+        </div>
+      </div>
+
   <!-- ===== MAIN WRAPPER ===== -->
   <div class="hotel-preview-wrapper">
 
@@ -190,79 +265,6 @@
       </div>
 
 
-
-      <div class="booking-row">
-        <div class="booking-field" onclick="showDatePicker('checkin')">
-          <label class="booking-label">Check in</label>
-          <div class="booking-value" id="checkin-display">Wed, 01 Apr</div>
-        </div>
-        <div class="booking-field" onclick="showDatePicker('checkout')">
-          <label class="booking-label">Check out</label>
-          <div class="booking-value" id="checkout-display">Thu, 02 Apr</div>
-        </div>
-        <div class="booking-field" onclick="showGuestSelector()">
-          <label class="booking-label">Rooms & guests</label>
-          <div class="booking-value" id="guest-display">1 room, 1 guest</div>
-        </div>
-        <button class="search-btn" onclick="performSearch()">
-          Search
-        </button>
-      </div>
-
-      <!-- Date Picker Modal -->
-      <div id="date-picker-modal" class="booking-modal">
-        <div class="booking-modal-content">
-          <div class="booking-modal-header">
-            <h3 id="date-picker-title">Select Date</h3>
-            <span class="modal-close" onclick="hideDatePicker()">&times;</span>
-          </div>
-          <div class="date-picker-container">
-            <div class="date-picker-header">
-              <button class="date-picker-nav" onclick="navigateMonth(-1)">&lt;</button>
-              <span class="date-picker-month" id="current-month-display"></span>
-              <button class="date-picker-nav" onclick="navigateMonth(1)">&gt;</button>
-            </div>
-            <div class="date-picker-grid" id="date-picker-grid"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Guest Selector Modal -->
-      <div id="guest-selector-modal" class="booking-modal">
-        <div class="booking-modal-content">
-          <div class="booking-modal-header">
-            <h3>Rooms & Guests</h3>
-            <span class="modal-close" onclick="hideGuestSelector()">&times;</span>
-          </div>
-          <div class="guest-selector-container">
-            <div class="guest-selector-row">
-              <span class="guest-selector-label">Rooms</span>
-              <div class="guest-counter">
-                <button class="guest-counter-btn" onclick="updateGuestCount('rooms', -1)">−</button>
-                <span class="guest-counter-value" id="rooms-counter">1</span>
-                <button class="guest-counter-btn" onclick="updateGuestCount('rooms', 1)">+</button>
-              </div>
-            </div>
-            <div class="guest-selector-row">
-              <span class="guest-selector-label">Adults</span>
-              <div class="guest-counter">
-                <button class="guest-counter-btn" onclick="updateGuestCount('adults', -1)">−</button>
-                <span class="guest-counter-value" id="adults-counter">1</span>
-                <button class="guest-counter-btn" onclick="updateGuestCount('adults', 1)">+</button>
-              </div>
-            </div>
-            <div class="guest-selector-row">
-              <span class="guest-selector-label">Children</span>
-              <div class="guest-counter">
-                <button class="guest-counter-btn" onclick="updateGuestCount('children', -1)">−</button>
-                <span class="guest-counter-value" id="children-counter">0</span>
-                <button class="guest-counter-btn" onclick="updateGuestCount('children', 1)">+</button>
-              </div>
-            </div>
-            <button class="guest-apply-btn" onclick="applyGuestChanges()">Apply</button>
-          </div>
-        </div>
-      </div>
 
 
       <div class="room-selection-filters">
