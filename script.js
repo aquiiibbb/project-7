@@ -580,7 +580,7 @@ const amenImages = [
   "Assets/aminities1.jpeg",
   "Assets/aminities2.jpeg",
   "Assets/aminities3.jpeg",
-  "Assets/aminities4.jpeg",
+  "Assets/aminities1.jpeg",
   "Assets/aminities5.jpeg"
 ];
 let amenIndex = 0;

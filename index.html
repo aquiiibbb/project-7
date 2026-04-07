@@ -4,13 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Magnolia Hotel - Searcy</title>
+  <title>THE MAGNOLIA HOTEL - SEARCY</title>
+
+  <!-- ✅ Favicon (logo icon) -->
+  <link rel="icon" type="image/png" href="Assets/logo.png">
 
   <link rel="stylesheet" href="style.css" />
+
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
   <!-- Your CSS -->
   <link href="css/style.css" rel="stylesheet">
 </head>
@@ -58,80 +63,80 @@
     </div>
   </header>
 
-  
 
-      <div class="booking-row">
-        <div class="booking-field" onclick="showDatePicker('checkin')">
-          <label class="booking-label">Check in</label>
-          <div class="booking-value" id="checkin-display">Wed, 01 Apr</div>
-        </div>
-        <div class="booking-field" onclick="showDatePicker('checkout')">
-          <label class="booking-label">Check out</label>
-          <div class="booking-value" id="checkout-display">Thu, 02 Apr</div>
-        </div>
-        <div class="booking-field" onclick="showGuestSelector()">
-          <label class="booking-label">Rooms & guests</label>
-          <div class="booking-value" id="guest-display">1 room, 1 guest</div>
-        </div>
-        <button class="search-btn" onclick="window.location.href='https://bookingengine.stayflexi.com/?hotel_id=35780'">
-  Book Now
-</button>
-      </div>
 
-      <!-- Date Picker Modal -->
-      <div id="date-picker-modal" class="booking-modal">
-        <div class="booking-modal-content">
-          <div class="booking-modal-header">
-            <h3 id="date-picker-title">Select Date</h3>
-            <span class="modal-close" onclick="hideDatePicker()">&times;</span>
-          </div>
-          <div class="date-picker-container">
-            <div class="date-picker-header">
-              <button class="date-picker-nav" onclick="navigateMonth(-1)">&lt;</button>
-              <span class="date-picker-month" id="current-month-display"></span>
-              <button class="date-picker-nav" onclick="navigateMonth(1)">&gt;</button>
-            </div>
-            <div class="date-picker-grid" id="date-picker-grid"></div>
-          </div>
-        </div>
-      </div>
+  <div class="booking-row">
+    <div class="booking-field" onclick="showDatePicker('checkin')">
+      <label class="booking-label">Check in</label>
+      <div class="booking-value" id="checkin-display">Wed, 01 Apr</div>
+    </div>
+    <div class="booking-field" onclick="showDatePicker('checkout')">
+      <label class="booking-label">Check out</label>
+      <div class="booking-value" id="checkout-display">Thu, 02 Apr</div>
+    </div>
+    <div class="booking-field" onclick="showGuestSelector()">
+      <label class="booking-label">Rooms & guests</label>
+      <div class="booking-value" id="guest-display">1 room, 1 guest</div>
+    </div>
+    <button class="search-btn" onclick="window.location.href='https://bookingengine.stayflexi.com/?hotel_id=35780'">
+      Book Now
+    </button>
+  </div>
 
-      <!-- Guest Selector Modal -->
-      <div id="guest-selector-modal" class="booking-modal">
-        <div class="booking-modal-content">
-          <div class="booking-modal-header">
-            <h3>Rooms & Guests</h3>
-            <span class="modal-close" onclick="hideGuestSelector()">&times;</span>
-          </div>
-          <div class="guest-selector-container">
-            <div class="guest-selector-row">
-              <span class="guest-selector-label">Rooms</span>
-              <div class="guest-counter">
-                <button class="guest-counter-btn" onclick="updateGuestCount('rooms', -1)">−</button>
-                <span class="guest-counter-value" id="rooms-counter">1</span>
-                <button class="guest-counter-btn" onclick="updateGuestCount('rooms', 1)">+</button>
-              </div>
-            </div>
-            <div class="guest-selector-row">
-              <span class="guest-selector-label">Adults</span>
-              <div class="guest-counter">
-                <button class="guest-counter-btn" onclick="updateGuestCount('adults', -1)">−</button>
-                <span class="guest-counter-value" id="adults-counter">1</span>
-                <button class="guest-counter-btn" onclick="updateGuestCount('adults', 1)">+</button>
-              </div>
-            </div>
-            <div class="guest-selector-row">
-              <span class="guest-selector-label">Children</span>
-              <div class="guest-counter">
-                <button class="guest-counter-btn" onclick="updateGuestCount('children', -1)">−</button>
-                <span class="guest-counter-value" id="children-counter">0</span>
-                <button class="guest-counter-btn" onclick="updateGuestCount('children', 1)">+</button>
-              </div>
-            </div>
-            <button class="guest-apply-btn" onclick="applyGuestChanges()">Apply</button>
+  <!-- Date Picker Modal -->
+  <div id="date-picker-modal" class="booking-modal">
+    <div class="booking-modal-content">
+      <div class="booking-modal-header">
+        <h3 id="date-picker-title">Select Date</h3>
+        <span class="modal-close" onclick="hideDatePicker()">&times;</span>
+      </div>
+      <div class="date-picker-container">
+        <div class="date-picker-header">
+          <button class="date-picker-nav" onclick="navigateMonth(-1)">&lt;</button>
+          <span class="date-picker-month" id="current-month-display"></span>
+          <button class="date-picker-nav" onclick="navigateMonth(1)">&gt;</button>
+        </div>
+        <div class="date-picker-grid" id="date-picker-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guest Selector Modal -->
+  <div id="guest-selector-modal" class="booking-modal">
+    <div class="booking-modal-content">
+      <div class="booking-modal-header">
+        <h3>Rooms & Guests</h3>
+        <span class="modal-close" onclick="hideGuestSelector()">&times;</span>
+      </div>
+      <div class="guest-selector-container">
+        <div class="guest-selector-row">
+          <span class="guest-selector-label">Rooms</span>
+          <div class="guest-counter">
+            <button class="guest-counter-btn" onclick="updateGuestCount('rooms', -1)">−</button>
+            <span class="guest-counter-value" id="rooms-counter">1</span>
+            <button class="guest-counter-btn" onclick="updateGuestCount('rooms', 1)">+</button>
           </div>
         </div>
+        <div class="guest-selector-row">
+          <span class="guest-selector-label">Adults</span>
+          <div class="guest-counter">
+            <button class="guest-counter-btn" onclick="updateGuestCount('adults', -1)">−</button>
+            <span class="guest-counter-value" id="adults-counter">1</span>
+            <button class="guest-counter-btn" onclick="updateGuestCount('adults', 1)">+</button>
+          </div>
+        </div>
+        <div class="guest-selector-row">
+          <span class="guest-selector-label">Children</span>
+          <div class="guest-counter">
+            <button class="guest-counter-btn" onclick="updateGuestCount('children', -1)">−</button>
+            <span class="guest-counter-value" id="children-counter">0</span>
+            <button class="guest-counter-btn" onclick="updateGuestCount('children', 1)">+</button>
+          </div>
+        </div>
+        <button class="guest-apply-btn" onclick="applyGuestChanges()">Apply</button>
       </div>
+    </div>
+  </div>
 
   <!-- ===== MAIN WRAPPER ===== -->
   <div class="hotel-preview-wrapper">
@@ -198,20 +203,7 @@
         <div class="overview-left">
           <p class="tag">OVERVIEW</p>
           <h2>“Book our affordable hotel in Searcy for a comfortable and convenient stay.”</h2>
-          <p class="desc"> Magnolia Hotel, Searcy is the perfect choice for travelers looking for value and convenience
-            just off the highway. Located minutes from Harding University, Berryhill Park, and Unity Health Hospital,
-            you’ll always be close to key destinations.
-
-            Enjoy easy access to nearby shopping, dining, and attractions, along with outdoor spots like the Little Red
-            River and local golf courses.
-
-            Guests can take advantage of free WiFi, complimentary coffee, a seasonal outdoor pool, business center,
-            laundry facilities, and free parking with space for trucks and buses.
-
-            Each room is equipped with essential amenities including a refrigerator, microwave, coffee maker, and
-            HDTV—giving you everything you need for a relaxed and budget-friendly stay.
-
-            Simple, comfortable, and easy on your wallet—book your stay today.</p>
+          <p class="desc"> The Magnolia Hotel offers an affordable stay near I-57 Exit 46, with easy access to shopping, restaurants, and key attractions like Harding University and Unity Health Hospital. Guests enjoy free WiFi, complimentary coffee, a seasonal pool, business facilities, and free parking. Each room includes essential amenities, ensuring a comfortable and convenient stay.</p>
           <button class="read-more-btn" onclick="openReadMoreModal()">
             Read More
           </button>
@@ -419,7 +411,7 @@
         <div class="amenities-image-slider">
           <div class="amenities-slider-container">
             <img id="amenities-slide-img" class="amenities-slider-image"
-              src="https://www.choicehotels.com/hoteldam/ar/ar191/images/480/AR191BreakfastSeating1.jpg?webp=true"
+              src="Assets/aminities5.jpeg"
               alt="Amenities" />
             <button class="amenities-slider-arrow amenities-slider-arrow-left" onclick="amenSlide(-1)">&#8249;</button>
             <button class="amenities-slider-arrow amenities-slider-arrow-right" onclick="amenSlide(1)">&#8250;</button>
@@ -442,22 +434,9 @@
       <div class="nearby-left">
         <h4>Find Us</h4>
         <p><b>120 North Rand Drive, Searcy, AR 72143, United States</b></p>
-        <p> Book our affordable hotel in Searcy near Harding University and top local attractions.
+        <p> Book an affordable stay at Magnolia Hotel & Suites Searcy, conveniently located near Harding University, Unity Health, and major attractions. Ideal for business, college visits, and family stays, with easy access to highways, shopping, dining, and local spots like Berryhill Park and Searcy Sports Complex.
 
-          Magnolia Hotel & Suites Searcy is ideally located for travelers looking for a budget hotel in Searcy, Arkansas
-          with easy highway access. Situated just minutes from Harding University and Unity Health–White County Medical
-          Center, our hotel is perfect for business trips, college visits, and family stays.
-
-          Guests can explore nearby attractions like Berryhill Park, featuring walking trails, picnic areas, and open
-          green spaces, or visit the Searcy Sports Complex for local events and activities. The hotel is also close to
-          major employers including the Walmart Distribution Center, making it a convenient choice for corporate
-          travelers.
-
-          Enjoy quick access to shopping centers, restaurants, and everyday essentials, all within a short drive from
-          the hotel.
-
-          Whether you're searching for a hotel near Harding University, a budget-friendly stay in Searcy, or a
-          convenient hotel off the highway, Magnolia Hotel & Suites Searcy offers the perfect location and value.</p>
+          </p>
       </div>
       <div class="nearby-right">
         <h3>What's nearby</h3>
@@ -537,7 +516,7 @@
           <div class="info-icon">🐾</div>
           <div>
             <h4>Pets</h4>
-            <p>Pet Friendly - $20/ night/ pet</p>
+            <p>Pet Friendly - $20 / per night / pet</p>
           </div>
         </div>
       </div>
@@ -550,7 +529,9 @@
           <p class="tag">REVIEWS</p>
           <h2>Guest Reviews <span>(18 reviews)</span></h2>
         </div>
-        <button class="review-btn">Show all reviews</button>
+       <button class="review-btn" onclick="window.open('https://www.google.com/travel/search?q=magnolia%20hotel%20searcy&g2lb=4965990%2C72471280%2C72560029%2C72573224%2C72647020%2C72686036%2C72803964%2C72882230%2C72958624%2C73059275%2C73064764&hl=en-IN&gl=in&ssta=1&ts=CAEaRwopEicyJTB4ODdkM2E4OGFjM2U5NjgyOToweGY0YmNlMGUzYmJlZjVkM2QSGhIUCgcI6g8QBBgFEgcI6g8QBBgGGAEyAhAA&qs=CAEyFENnc0l2YnE5Mzd1Y3VONzBBUkFCOAJCCQk9Xe-74-C89EIJCT1d77vj4Lz0&ap=ugEHcmV2aWV3cw&ictx=111&ved=0CAAQ5JsGahcKEwi4icPQrteTAxUAAAAAHQAAAAAQBA', '_blank')">
+  Show all reviews
+</button>
       </div>
       <div class="reviews-summary">
         <div class="rating-circle">
@@ -592,44 +573,7 @@
           </div>
         </div>
       </div>
-      <div class="reviews-cards">
-        <div class="review-card">
-          <p class="stars">⭐ <span>1/5</span></p>
-          <h4>Stay else where</h4>
-          <p>Run down dirty property unbearable smell of smoke stained linens and towels and the owner charged me twice
-            on my credit card - possibly the worst stay O have had in 15 years</p>
-          <div class="review-footer">
-            <div>
-              <p class="name">Lewis, Ronald</p>
-              <p class="date">March 2026</p>
-            </div><span class="verified">Verified</span>
-          </div>
-        </div>
-        <div class="review-card">
-          <p class="stars">⭐⭐⭐⭐⭐ <span>5/5</span></p>
-          <h4></h4>
-          <p>The owners are amazing and always accommodating. Room are always clean and comfortable. Location is great
-            and the price is very reasonable. Its home away from home.</p>
-          <div class="review-footer">
-            <div>
-              <p class="name">Jarrett, Regina</p>
-              <p class="date">March 2026</p>
-            </div><span class="verified">Verified</span>
-          </div>
-        </div>
-        <div class="review-card">
-          <p class="stars">⭐⭐⭐⭐⭐ <span>5/5</span></p>
-          <h4>CEO, Austin Transport and Towing, LLC</h4>
-          <p>As always, the staff was very courteous, professional and caring. Recently, I had knee surgery and its very
-            difficult walking up and down stairs. The owner ensure that my stay was comfortable and that during</p>
-          <div class="review-footer">
-            <div>
-              <p class="name">Austin, Donald</p>
-              <p class="date">March 2026</p>
-            </div><span class="verified">Verified</span>
-          </div>
-        </div>
-      </div>
+    
     </div>
 
     <!-- ===== CONTACT ===== -->
@@ -731,8 +675,7 @@
             <div class="policy-card-title"><span class="policy-icon">🏨</span> Property Rules</div>
             <div class="policy-row"><span class="policy-key">Smoking</span><span class="policy-val">Smoke-free ($250
                 fee)</span></div>
-            <div class="policy-row"><span class="policy-key">Pets</span><span class="policy-val">Pet Friendly - $20 /
-                night / pet</span>
+            <div class="policy-row"><span class="policy-key">Pets</span><span class="policy-val">Pet Friendly - $20 / per night / pet</span>
             </div>
 
             <div class="policy-row"><span class="policy-key">Parking</span><span class="policy-val">Complimentary
@@ -1082,7 +1025,7 @@
 
 
           <div class="modal-amenity-item">
-            <div class="modal-amenity-icon">🐕</div><span>Pet Friendly - $20/ night/ pet</span>
+            <div class="modal-amenity-icon">🐕</div><span>Pet Friendly - $20 / per night / pet</span>
           </div>
           <div class="modal-amenity-item">
             <div class="modal-amenity-icon">🚌</div><span>Bus Parking</span>
