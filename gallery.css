@@ -21,7 +21,7 @@
 }
 .close-button:hover { background: rgba(0,0,0,0.9); transform: scale(1.1); }
 .close-button svg { width: 20px; height: 20px; stroke: white; }
-.gallery-header { text-align: center; padding: 60px 20px 30px; }
+.gallery-header { text-align: center; padding: 40px 20px 30px; }
 .gallery-title { font-size: 28px; font-weight: 600; margin: 0 0 30px; color: #fff; }
 .tab-navigation { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
 .tab-button {
@@ -44,7 +44,7 @@
 }
 .category-button.active { background: white; color: #2a2a3e; border-color: white; }
 .category-button:hover:not(.active) { border-color: #6a6a7e; color: white; }
-.main-image-container { max-width: 1200px; margin: 0 auto; padding: 0 20px 40px; }
+.main-image-container { max-width: 1200px; margin: 0 auto; padding: 38px 40px 40px; }
 .image-wrapper { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); aspect-ratio: 16/9; }
 .main-image { width: 100%; height: 100%; object-fit: cover; display: block; }
 .nav-arrow {
