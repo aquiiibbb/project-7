@@ -4058,9 +4058,9 @@ body {
   .booking-row {
     display: flex;
     flex-wrap: nowrap;
-    gap: 3px;
+    gap: 4px;
     width: 290px;
-    margin-left: 35px;
+    margin-left: 54px;
     margin-top: 10px;
   }
 
