@@ -354,7 +354,7 @@ body {
 .footer-bottom p {
   margin: 0;
   font-size: 14px;
-  color: #94a3b8;
+  color: #94a3b8; /* Fixed back to original color */
 }
 
 /* Terms Hover Container */
@@ -441,61 +441,6 @@ body {
     width: 300px;
     right: -50px;
   }
-}
-
-/* Popup Header */
-.popup-header {
-  background: #69883c;
-  color: white;
-  padding: 15px 20px;
-  border-radius: 12px 12px 0 0;
-  margin-bottom: 0;
-}
-
-.popup-header h4 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* Popup Content */
-.popup-content {
-  padding: 20px;
-  color: #374151;
-}
-
-/* Policy Sections */
-.policy-section {
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.policy-section:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-.policy-section h5 {
-  margin: 0 0 10px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1f2937;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.policy-section p {
-  margin: 4px 0;
-  font-size: 13px;
-  line-height: 1.4;
-  color: #6b7280;
-}
-
-.policy-section p strong {
-  color: #374151;
-  font-weight: 500;
 }
 
 /* Custom Scrollbar */
@@ -2128,7 +2073,6 @@ body {
   padding: 2px 4px;
 }
 .nearby-right h3 {
-  padding: 10px;
   font-size: 22px;
   font-weight: 600;
 }
@@ -4102,10 +4046,13 @@ body {
   .booking-row {
     display: flex;
     flex-wrap: nowrap;
-    gap: 4px;
-    width: 290px;
-    margin-left: 54px;
+    gap: 3px;
+    width: calc(80% - -2px);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
+    justify-content: center;
   }
 
   .booking-field {
@@ -5693,9 +5640,9 @@ body.disable-animations * {
   justify-content: space-between;
   align-items: flex-start;
   gap: 8px;
-  padding: 8px 8px;
+  padding: 6px 0;
   border-bottom: 1px solid #f3f4f6;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .policy-row:last-child {
@@ -5710,4 +5657,233 @@ body.disable-animations * {
 .policy-val {
   color: #1a1a1a;
   text-align: right;
+}}
+
+/* ============================================================
+   MOBILE BOOKING ROW - COMPLETE OVERRIDE FIX
+   Yeh sabse last mein hai isliye sabko override karega
+   ============================================================ */
+
+/* === MOBILE: 600px se neeche - booking row fix === */
+@media (max-width: 600px) {
+
+  /* Header compact rakho */
+  .hotel-header {
+    padding: 6px 0 !important;
+  }
+
+  .hotel-header-container {
+    padding: 0 10px !important;
+  }
+
+  /* Logo + Title + Button ek line mein */
+  .hotel-top-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+    padding: 4px 0 !important;
+  }
+
+  .hotel-logo-section {
+    flex-shrink: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .hotel-logo img {
+    height: 38px !important;
+    margin-top: 0 !important;
+    width: auto !important;
+  }
+
+  .hotel-main-info {
+    flex: 1 !important;
+    text-align: left !important;
+    padding: 0 4px !important;
+    min-width: 0 !important;
+  }
+
+  .hotel-title {
+    font-size: 12px !important;
+    margin: 0 0 2px 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .hotel-subtitle {
+    font-size: 10px !important;
+    margin: 0 !important;
+  }
+
+  .hotel-details-btn {
+    flex-shrink: 0 !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    min-width: auto !important;
+    height: 30px !important;
+    margin-top: 0 !important;
+    white-space: nowrap !important;
+    animation: none !important;
+  }
+
+  /* ===== BOOKING ROW - MAIN FIX ===== */
+  .booking-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 8px 0 0 0 !important;
+    padding: 0 8px !important;
+    gap: 4px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Har booking field equal width */
+  .booking-field {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    padding: 6px 4px !important;
+    border-radius: 6px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #f9fafb !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 52px !important;
+  }
+
+  .booking-label {
+    font-size: 8px !important;
+    color: #6b7280 !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0 !important;
+    line-height: 1.2 !important;
+    display: block !important;
+    white-space: nowrap !important;
+  }
+
+  .booking-value {
+    font-size: 10px !important;
+    color: #111827 !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    margin-top: 2px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Book Now button same height, slightly wider */
+  .search-btn {
+    flex: 0 0 auto !important;
+    width: 72px !important;
+    min-width: 72px !important;
+    height: 52px !important;
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    border-radius: 6px !important;
+    background: #6b8c3a !important;
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+  }
+
+  body {
+    padding-top: 95px !important;
+  }
+}
+
+/* === Very small phones: 400px se neeche === */
+@media (max-width: 400px) {
+
+  .booking-row {
+    gap: 3px !important;
+    padding: 0 6px !important;
+  }
+
+  .booking-field {
+    height: 48px !important;
+    padding: 4px 2px !important;
+  }
+
+  .booking-label {
+    font-size: 7px !important;
+  }
+
+  .booking-value {
+    font-size: 9px !important;
+  }
+
+  .search-btn {
+    width: 60px !important;
+    min-width: 60px !important;
+    height: 48px !important;
+    font-size: 10px !important;
+  }
+
+  .hotel-title {
+    font-size: 11px !important;
+  }
+
+  .hotel-logo img {
+    height: 32px !important;
+  }
+}
+
+/* === Bahut chote phones: 360px se neeche === */
+@media (max-width: 360px) {
+
+  .hotel-header-container {
+    padding: 0 6px !important;
+  }
+
+  .booking-row {
+    gap: 2px !important;
+    padding: 0 4px !important;
+  }
+
+  .booking-field {
+    height: 44px !important;
+  }
+
+  .booking-label {
+    font-size: 6px !important;
+  }
+
+  .booking-value {
+    font-size: 8px !important;
+  }
+
+  .search-btn {
+    width: 55px !important;
+    min-width: 55px !important;
+    height: 44px !important;
+    font-size: 9px !important;
+  }
+
+  .hotel-title {
+    font-size: 10px !important;
+  }
+
+  .hotel-details-btn {
+    font-size: 9px !important;
+    padding: 4px 8px !important;
+    height: 26px !important;
+  }
 }
