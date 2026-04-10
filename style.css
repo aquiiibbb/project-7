@@ -1472,6 +1472,7 @@ body {
 }
 
 .nav-item.active {
+  margin-top: 10px;
   color: #1f2937;
   border-bottom-color: #3b82f6;
   background: #eff6ff;
@@ -3998,7 +3999,7 @@ body {
   }
 
   .hotel-header-container {
-    padding: 6px 11px;
+    padding: 10px 11px;
   }
 
   .hotel-top-row {
@@ -4024,7 +4025,7 @@ body {
   }
 
   .hotel-title {
-    font-size: 11px;
+    font-size: 13px;
     margin: 0 0 2px 0;
   }
 
@@ -5608,6 +5609,7 @@ body.disable-animations * {
 }
 
 .policy-grid {
+  margin-left: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
