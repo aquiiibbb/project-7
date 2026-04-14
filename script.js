@@ -561,8 +561,8 @@ function initHotelTabs() {
 
 // ===== ROOM IMAGE SLIDERS ====
 const roomImages = {
-  room1: ['Assets/room1.jpeg', 'Assets/room1(1).jpeg', 'Assets/room1(2).jpeg', 'Assets/room1(3).jpeg', 'Assets/room1(4).jpeg', 'Assets/room1(5).jpeg', 'Assets/room1(6).jpeg', 'Assets/room1(7).jpeg', 'Assets/room1(8).jpeg'],
-  room2: ['Assets/room1.jpeg', 'Assets/room1(1).jpeg', 'Assets/room1(2).jpeg', 'Assets/room1(3).jpeg', 'Assets/room1(4).jpeg', 'Assets/room1(5).jpeg', 'Assets/room1(6).jpeg', 'Assets/room1(7).jpeg', 'Assets/room1(8).jpeg'],
+  room1: ['Assets/room1.jpeg', 'Assets/room1(1).jpeg', 'Assets/room1(2).jpeg', 'Assets/room1(5).jpeg', 'Assets/room1(6).jpeg', 'Assets/room1(7).jpeg', 'Assets/room1(8).jpeg'],
+  room2: ['Assets/room1.jpeg', 'Assets/room1(1).jpeg', 'Assets/room1(2).jpeg', 'Assets/room1(5).jpeg', 'Assets/room1(6).jpeg', 'Assets/room1(7).jpeg', 'Assets/room1(8).jpeg'],
   room3: ['Assets/room7.jpeg', 'Assets/room7(1).jpeg', 'Assets/room7(2).jpeg'],
 };
 const roomIndexes = { room1: 0, room2: 0, room3: 0 };
@@ -579,7 +579,7 @@ const amenImages = [
   "Assets/aminities1.jpeg",
   "Assets/aminities2.jpeg",
   "Assets/aminities1.jpeg",
-  
+
 ];
 let amenIndex = 0;
 
