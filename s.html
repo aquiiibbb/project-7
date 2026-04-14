@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -420,6 +421,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="hampton-modal-container">
         <div class="hampton-modal-content">
@@ -429,7 +431,7 @@
                     <img src="Assets/3.jpeg" alt="Hotel Exterior" class="hampton-main-image" />
                     <button class="hampton-nav-arrow hampton-nav-left" onclick="previousImage()">‹</button>
                     <button class="hampton-nav-arrow hampton-nav-right" onclick="nextImage()">›</button>
-                    <div class="hampton-image-counter">1 / 8</div>
+                    <div class="hampton-image-counter">1 / 6</div>
                 </div>
 
                 <div class="hampton-hotel-info">
@@ -437,7 +439,8 @@
                     <div class="hampton-renovated-badge">Recently renovated</div>
 
                     <div class="hampton-contact-links">
-                        <a href="https://maps.google.com/?q=120+North+Rand+Drive,+Searcy,+AR,+72143,+US" target="_blank">Directions</a>
+                        <a href="https://maps.google.com/?q=120+North+Rand+Drive,+Searcy,+AR,+72143,+US"
+                            target="_blank">Directions</a>
                         <a href="" target="_blank">Visit website</a>
                         <a href="tel:+501279-1200">📞 (501) 279-1200</a>
                     </div>
@@ -445,20 +448,25 @@
                     <div class="hampton-description">
                         <h3>Description</h3>
                         <p>
-                          Magnolia Hotel, Searcy is the perfect choice for travelers looking for value and convenience just off the highway. Located minutes from Harding University, Berryhill Park, and Unity Health Hospital, you’ll always be close to key destinations.
+                            Magnolia Hotel, Searcy is the perfect choice for travelers looking for value and convenience
+                            just off the highway. Located minutes from Harding University, Berryhill Park, and Unity
+                            Health Hospital, you’ll always be close to key destinations.
 
-Enjoy easy access to nearby shopping, dining, and attractions, along with outdoor spots like the Little Red River and local golf courses.
+                            Enjoy easy access to nearby shopping, dining, and attractions, along with outdoor spots like
+                            the Little Red River and local golf courses.
 
-Guests can take advantage of free WiFi, complimentary coffee, a seasonal outdoor pool, business center, laundry facilities, and free parking with space for trucks and buses.
+                            Guests can take advantage of free WiFi, complimentary coffee, a seasonal outdoor pool,
+                            business center, laundry facilities, and free parking with space for trucks and buses.
 
-Each room is equipped with essential amenities including a refrigerator, microwave, coffee maker, and HDTV—giving you everything you need for a relaxed and budget-friendly stay.
+                            Each room is equipped with essential amenities including a refrigerator, microwave, coffee
+                            maker, and HDTV—giving you everything you need for a relaxed and budget-friendly stay.
 
-Simple, comfortable, and easy on your wallet—book your stay today.
+                            Simple, comfortable, and easy on your wallet—book your stay today.
                         </p>
                         <a href="javascript:void(0)" onclick="toggleDescription()">Read less</a>
                     </div>
 
-                  
+
                 </div>
             </div>
 
@@ -485,8 +493,8 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                         <div class="hampton-amenity-icon">🚭</div>
                         <span>Non-smoking rooms</span>
                     </div>
-                    
-                    
+
+
                     <div class="hampton-amenity-item">
                         <div class="hampton-amenity-icon">🧳</div>
                         <span>Business center</span>
@@ -495,7 +503,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                         <div class="hampton-amenity-icon">🐕</div>
                         <span>Pet Friendly - $20 / per night / pet</span>
                     </div>
-                    
+
                     <div class="hampton-amenity-item">
                         <div class="hampton-amenity-icon">🥤</div>
                         <span>Vending Machines</span>
@@ -512,10 +520,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                         <div class="hampton-amenity-icon">🏨</div>
                         <span>Exterior Corridors</span>
                     </div>
-                    <div class="hampton-amenity-item">
-                        <div class="hampton-amenity-icon">🩺</div>
-                        <span>First-aid staff/24hr</span>
-                    </div>
+
                     <div class="hampton-amenity-item">
                         <div class="hampton-amenity-icon">♿</div>
                         <span>Free Accessible Parking</span>
@@ -523,7 +528,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                     <div class="hampton-amenity-item">
                         <div class="hampton-amenity-icon">🏛️</div>
                         <span>Government Travelers: FEMA
-              Approved</span>
+                            Approved</span>
                     </div>
                     <div class="hampton-amenity-item">
                         <div class="hampton-amenity-icon">🧊</div>
@@ -653,7 +658,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                             </div>
                             <div class="hampton-location-item">
                                 <span>Estimated drive time</span>
-                                <span>1 hour 15 minutes</span>
+                                <span>Less than 1 hour</span>
                             </div>
                         </div>
                     </div>
@@ -690,15 +695,6 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                 src: "Assets/16.jpeg",
                 alt: "Hotel Room"
             },
-            
-            {
-                src: "Assets/aminities4.jpeg",
-                alt: "Indoor Pool"
-            },
-            {
-                src: "Assets/31.jpeg",
-                alt: "Fitness Center"
-            },
             {
                 src: "Assets/21.jpeg",
                 alt: "Breakfast Area"
@@ -707,7 +703,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
                 src: "Assets/6.jpeg",
                 alt: "Business Center"
             },
-          
+
         ];
 
         let hamptonCurrentImage = 0;
@@ -725,7 +721,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
         function updateHamptonImage() {
             const img = document.querySelector('.hampton-main-image');
             const counter = document.querySelector('.hampton-image-counter');
-            
+
             if (img && counter) {
                 img.src = hamptonImages[hamptonCurrentImage].src;
                 img.alt = hamptonImages[hamptonCurrentImage].alt;
@@ -738,15 +734,15 @@ Simple, comfortable, and easy on your wallet—book your stay today.
             document.querySelectorAll('.hampton-tab-btn').forEach(btn => {
                 btn.classList.remove('hampton-tab-active');
             });
-            
+
             document.querySelectorAll('.hampton-tab-content').forEach(content => {
                 content.classList.remove('hampton-tab-show');
             });
-            
+
             // Add active classes
             const activeBtn = document.querySelector(`[onclick="switchTab('${tabName}')"]`);
             const activeContent = document.getElementById(`${tabName}-content`);
-            
+
             if (activeBtn) activeBtn.classList.add('hampton-tab-active');
             if (activeContent) activeContent.classList.add('hampton-tab-show');
         }
@@ -754,7 +750,7 @@ Simple, comfortable, and easy on your wallet—book your stay today.
         function toggleDescription() {
             const description = document.querySelector('.hampton-description p');
             const link = document.querySelector('.hampton-description a');
-            
+
             if (description && link) {
                 if (description.style.maxHeight) {
                     description.style.maxHeight = null;
@@ -767,4 +763,5 @@ Simple, comfortable, and easy on your wallet—book your stay today.
         }
     </script>
 </body>
+
 </html>

@@ -22,7 +22,6 @@ const imageData = [
   { id: 20, caption: 'outdoor pool', category: 'Amenities' },
   { id: 21, caption: 'Breakfast area', category: 'Breakfast Area' },
   { id: 22, caption: 'Breakfast area', category: '' },
-  { id: 23, caption: 'Enjoy breakfast in this seating area', category: '' },
   { id: 24, caption: 'Relax on the sundeck', category: '' },
   { id: 25, caption: 'Outdoor pool', category: '' },
   { id: 26, caption: 'Hotel exterior', category: 'Exterior' },

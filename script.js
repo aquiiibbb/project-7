@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
 const hamptonImages = [
   { src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop", alt: "Hotel Exterior" },
   { src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=600&fit=crop", alt: "Hotel Room" },
-  { src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop", alt: "Hotel Lobby" },
   { src: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&h=600&fit=crop", alt: "Indoor Pool" },
   { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop", alt: "Fitness Center" },
   { src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop", alt: "Breakfast Area" },
@@ -579,7 +578,6 @@ function modalSlide(room, dir) {
 const amenImages = [
   "Assets/aminities1.jpeg",
   "Assets/aminities2.jpeg",
-  "Assets/aminities4.jpeg",
   "Assets/aminities1.jpeg",
   
 ];

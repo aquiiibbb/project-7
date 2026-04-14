@@ -1769,7 +1769,7 @@ body {
 
 .room-specs {
   display: flex;
-  gap: 15px;
+  gap: 18px;
   margin-bottom: 15px;
   flex-wrap: wrap;
 }
@@ -1789,7 +1789,7 @@ body {
 .feature-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: 16px;
   margin-bottom: 15px;
 }
 
