@@ -1533,7 +1533,7 @@ body {
   background: #58752D;
   display: inline-block;
   margin-top: 18px;
-  font-size: 14px;
+  font-size: 5px;
   text-decoration: underline;
   color: #e0e0e0;
   font-weight: 500;
@@ -2339,7 +2339,7 @@ body {
   background: white;
   padding: 24px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #cdd1d8;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -2411,8 +2411,7 @@ body {
 }
 
 .read-more-btn {
-  width: 80px;
-  height: 20px;
+  width: 99px;
   border-radius: 4px;
   margin-top: 16px;
 }
@@ -3413,16 +3412,7 @@ body {
   right: 10px;
 }
 
-.modal-image-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
-  color: white;
-  font-size: 12px;
-  padding: 20px 14px 10px;
-}
+
 
 .modal-info-section {
   padding: 20px 24px 24px;
