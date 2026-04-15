@@ -758,12 +758,12 @@ body {
   /* Check-in & Check-out HEIGHT INCREASE */
   .booking-field:nth-child(1),
   .booking-field:nth-child(2) {
-    height:54px;
+    height:46px;
   }
 
   /* Guests NORMAL */
   .booking-field:nth-child(3) {
-    height:55px;
+    height: 46px;
   }
 
   /* Book Now SAME HEIGHT as check-in */
@@ -4084,7 +4084,7 @@ body {
 
   .booking-field {
     min-width: calc(29.33% - 3px);
-    padding: 4px 5px;
+    padding: 4px 6px;
     font-size: 10px;
   }
 
@@ -4100,7 +4100,7 @@ body {
     padding: -3px 12px;
     font-size: 12px;
     min-width: calc(33.33% - 3px);
-    height: 55px;
+    height: 45px;
   }
 
   .booking-modal-content {
