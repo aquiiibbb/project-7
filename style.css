@@ -354,29 +354,42 @@ body {
 .footer-bottom p {
   margin: 0;
   font-size: 14px;
-  color: #94a3b8; /* Fixed back to original color */
+  color: #94a3b8;
+  /* Fixed back to original color */
 }
 
-/* Terms Hover Container */
-.terms-hover-container {
+/* FAQ Container */
+.faq-container {
   position: relative;
   display: inline-block;
 }
 
-.terms-link {
-  color: #94a3b8;
-  text-decoration: none;
+.faq-button {
+  background: #435a20;
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 5px;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.terms-link:hover {
-  color: #435a20;
+.faq-button:hover {
+  background: #5a7a2a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(67, 90, 32, 0.3);
 }
 
-/* Terms Popup */
-.terms-popup {
+.faq-button:active {
+  transform: translateY(0);
+}
+
+/* FAQ Popup */
+.faq-popup {
   position: absolute;
   bottom: 100%;
   right: 0;
@@ -391,22 +404,22 @@ body {
   transform: translateY(10px);
   transition: all 0.3s ease;
   z-index: 1000;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.terms-hover-container:hover .terms-popup {
+.faq-popup.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* Terms Content Styling */
-.terms-content {
+/* FAQ Content Styling */
+.faq-content {
   padding: 20px;
   color: #1a1a2e;
 }
 
-.terms-content h2 {
+.faq-content h2 {
   margin: 0 0 20px 0;
   font-size: 20px;
   font-weight: 600;
@@ -415,14 +428,14 @@ body {
   padding-bottom: 10px;
 }
 
-.terms-content h3 {
+.faq-content h3 {
   margin: 15px 0 8px 0;
   font-size: 16px;
   font-weight: 600;
   color: #1a1a2e;
 }
 
-.terms-content p {
+.faq-content p {
   margin: 0 0 15px 0;
   font-size: 14px;
   line-height: 1.5;
@@ -431,17 +444,12 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-  
-  .terms-popup {
+  .faq-popup {
     width: 300px;
     right: -50px;
   }
 }
+
 
 /* Custom Scrollbar */
 .terms-popup::-webkit-scrollbar {
@@ -758,7 +766,7 @@ body {
   /* Check-in & Check-out HEIGHT INCREASE */
   .booking-field:nth-child(1),
   .booking-field:nth-child(2) {
-    height:42px;
+    height: 42px;
   }
 
   /* Guests NORMAL */
@@ -2069,10 +2077,11 @@ body {
   border-left: 4px solid #3b82f6;
 }
 
-.nearby-left b{
+.nearby-left b {
   font-size: 18px;
   padding: 2px 4px;
 }
+
 .nearby-right h3 {
   font-size: 22px;
   font-weight: 600;
@@ -2430,15 +2439,15 @@ body {
     padding: 24px;
     text-align: center;
   }
-  
+
   .reviews-cards {
     grid-template-columns: 1fr;
   }
-  
+
   .big-rating h1 {
     font-size: 56px;
   }
-  
+
   .rating-right {
     width: 100%;
   }
@@ -2449,24 +2458,25 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .review-btn {
     width: 100%;
   }
-  
+
   .big-rating h1 {
     font-size: 48px;
   }
-  
+
   .review-card {
     padding: 16px;
     min-height: auto;
   }
-  
+
   .reviews-summary {
     gap: 40px;
   }
 }
+
 /* ========== CONTACT ========== */
 .contact-section {
   padding: 10px 20px;
@@ -4545,7 +4555,7 @@ body {
   }
 
   .hotel-subtitle {
-    padding-left:19px;
+    padding-left: 19px;
     display: block;
     font-size: 11px;
     font-weight: 550;
@@ -5686,7 +5696,8 @@ body.disable-animations * {
 .policy-val {
   color: #1a1a1a;
   text-align: right;
-}}
+}
+}
 
 /* ============================================================
    MOBILE BOOKING ROW - COMPLETE OVERRIDE FIX

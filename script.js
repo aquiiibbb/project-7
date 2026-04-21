@@ -38,6 +38,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+//button faq 
+document.addEventListener('DOMContentLoaded', function () {
+  const faqButton = document.getElementById('faqToggle');
+  const faqPopup = document.getElementById('faqPopup');
+
+  faqButton.addEventListener('click', function () {
+    faqPopup.classList.toggle('active');
+  });
+
+  // Close popup when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!faqButton.contains(event.target) && !faqPopup.contains(event.target)) {
+      faqPopup.classList.remove('active');
+    }
+  });
+});
+
+
 // Touch devices support
 document.addEventListener('DOMContentLoaded', function () {
   const termsLink = document.querySelector('.terms-link');
